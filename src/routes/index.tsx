@@ -1,7 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { MessageCircle, ShoppingBag, Wallet, MapPin, Sparkles, Shield, Bot, Smartphone, ArrowRight } from "lucide-react";
-import { WhatsAppMock } from "@/components/site/WhatsAppMock";
+import { MessageCircle, ShoppingBag, Wallet, MapPin, Sparkles, Shield, Bot, Smartphone, ArrowRight, RotateCcw } from "lucide-react";
 import { motion } from "motion/react";
+import { useRef } from "react";
+import { WHATSAPP_ORDER_URL, SIGNUP_URL } from "@/lib/site";
+import { trackStartFree } from "@/lib/pixel";
+import { WhatsAppLink } from "@/components/site/WhatsAppLink";
+import { featuredRestaurants } from "@/data/featured-restaurants";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -9,13 +13,21 @@ export const Route = createFileRoute("/")({
       { title: "ThothFood — Hungry? Just WhatsApp it." },
       { name: "description", content: "Order food on WhatsApp from your favourite restaurants in Ghana. No app, no stress. Pay with MoMo or card." },
       { property: "og:title", content: "ThothFood — Hungry? Just WhatsApp it." },
-      { property: "og:description", content: "Order food on WhatsApp from your favourite restaurants in Ghana." },
+      { property: "og:description", content: "Order food on WhatsApp from your favourite restaurants in Ghana. No app, no account, no stress." },
+      { property: "og:type", content: "website" },
+      { property: "og:image", content: "/og/thothfood.png" },
     ],
   }),
   component: Home,
 });
 
 function Home() {
+  const demoRef = useRef<HTMLIFrameElement>(null);
+
+  function replayDemo() {
+    if (demoRef.current) demoRef.current.src = demoRef.current.src;
+  }
+
   return (
     <>
       {/* HERO */}
@@ -65,13 +77,10 @@ function Home() {
               transition={{ delay: 0.15 }}
               className="mt-8 flex flex-wrap items-center gap-4"
             >
-              <a
-                href="https://wa.me/233000000000"
-                className="group inline-flex h-14 items-center gap-2 rounded-full bg-primary px-7 text-base font-semibold text-primary-foreground shadow-[0_12px_40px_-12px_oklch(0.745_0.165_60/0.7)] transition-transform hover:-translate-y-0.5"
-              >
+              <WhatsAppLink className="group inline-flex h-14 items-center gap-2 rounded-full bg-primary px-7 text-base font-semibold text-primary-foreground shadow-[0_12px_40px_-12px_oklch(0.745_0.165_60/0.7)] transition-transform hover:-translate-y-0.5">
                 Order Now
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-              </a>
+              </WhatsAppLink>
               <Link
                 to="/how-it-works"
                 className="inline-flex h-14 items-center rounded-full border border-white/20 px-6 text-base font-semibold text-white/90 hover:bg-white/5"
@@ -90,10 +99,29 @@ function Home() {
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative"
+            className="relative flex justify-center"
           >
             <div className="absolute -inset-8 -z-10 rounded-[3rem] bg-gradient-to-br from-primary/30 via-transparent to-success/20 blur-3xl" />
-            <WhatsAppMock />
+            <div className="relative">
+              <iframe
+                ref={demoRef}
+                src="/demo/thothfood-demo.html"
+                title="ThothFood live demo"
+                style={{
+                  width: "420px",
+                  height: "710px",
+                  border: "none",
+                  display: "block",
+                }}
+                loading="lazy"
+              />
+              <button
+                onClick={replayDemo}
+                className="absolute bottom-3 right-3 flex items-center gap-1.5 rounded-full border border-white/20 bg-black/50 px-3 py-1.5 text-xs font-semibold text-white/70 backdrop-blur-sm transition-all hover:bg-black/70 hover:text-white"
+              >
+                <RotateCcw className="h-3 w-3" /> Replay
+              </button>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -147,6 +175,30 @@ function Home() {
                 <h3 className="mt-5 font-display text-xl font-bold">{s.title}</h3>
                 <p className="mt-2 text-sm text-foreground/65">{s.desc}</p>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* NOW SERVING */}
+      <section className="border-y border-border bg-background py-16">
+        <div className="container-page">
+          <p className="text-center text-xs font-semibold uppercase tracking-widest text-foreground/40">
+            Now serving in Accra
+          </p>
+          <div className="mt-6 flex flex-wrap justify-center gap-3">
+            {featuredRestaurants.map((r) => (
+              <WhatsAppLink
+                key={r.name}
+                href={r.waUrl ?? WHATSAPP_ORDER_URL}
+                className="group flex items-center gap-3 rounded-2xl border border-border bg-card px-5 py-3.5 transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-[0_8px_24px_-8px_oklch(0.745_0.165_60/0.2)]"
+              >
+                <span className="text-2xl">{r.emoji}</span>
+                <div className="text-left">
+                  <p className="text-sm font-semibold group-hover:text-primary">{r.name}</p>
+                  <p className="text-xs text-foreground/50">{r.cuisine} · {r.area}</p>
+                </div>
+              </WhatsAppLink>
             ))}
           </div>
         </div>
@@ -207,6 +259,7 @@ function Home() {
                 </p>
                 <Link
                   to="/contact"
+                  search={{ role: undefined }}
                   className="mt-7 inline-flex h-12 items-center gap-2 rounded-full bg-white px-6 text-sm font-semibold text-dark hover:bg-primary hover:text-primary-foreground"
                 >
                   Join the waitlist <ArrowRight className="h-4 w-4" />
@@ -224,6 +277,32 @@ function Home() {
         </div>
       </section>
 
+      {/* MERCHANT BANNER */}
+      <section className="bg-background py-8">
+        <div className="container-page">
+          <div className="flex flex-col items-center justify-between gap-4 rounded-3xl border border-border bg-dark px-8 py-6 text-dark-foreground sm:flex-row">
+            <p className="font-display text-lg font-bold">
+              Own a restaurant? Get on ThothFood free.
+            </p>
+            <div className="flex items-center gap-3">
+              <a
+                href={SIGNUP_URL}
+                onClick={trackStartFree}
+                className="inline-flex h-10 items-center gap-2 rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground"
+              >
+                Start free <ArrowRight className="h-3.5 w-3.5" />
+              </a>
+              <Link
+                to="/pricing"
+                className="text-sm font-medium text-white/60 hover:text-white"
+              >
+                compare plans
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* FINAL CTA */}
       <section className="bg-background py-24">
         <div className="container-page text-center">
@@ -234,12 +313,9 @@ function Home() {
           <p className="mx-auto mt-5 max-w-xl text-foreground/65">
             Your favourite kitchens are one tap away. Lunch sorted in under a minute.
           </p>
-          <a
-            href="https://wa.me/233000000000"
-            className="mt-8 inline-flex h-14 items-center gap-2 rounded-full bg-primary px-8 text-base font-semibold text-primary-foreground shadow-[0_12px_40px_-12px_oklch(0.745_0.165_60/0.6)] transition-transform hover:-translate-y-0.5"
-          >
+          <WhatsAppLink className="mt-8 inline-flex h-14 items-center gap-2 rounded-full bg-primary px-8 text-base font-semibold text-primary-foreground shadow-[0_12px_40px_-12px_oklch(0.745_0.165_60/0.6)] transition-transform hover:-translate-y-0.5">
             <MessageCircle className="h-5 w-5" /> Order on WhatsApp
-          </a>
+          </WhatsAppLink>
         </div>
       </section>
     </>

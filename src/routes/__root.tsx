@@ -12,7 +12,30 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
-import { reportLovableError } from "../lib/lovable-error-reporting";
+import { SITE_URL, CONTACT_EMAIL } from "@/lib/site";
+
+const PIXEL_ID = import.meta.env.VITE_META_PIXEL_ID as string | undefined;
+const PLAUSIBLE_DOMAIN = import.meta.env.VITE_PLAUSIBLE_DOMAIN as string | undefined;
+
+const orgSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "ThothAI Technologies",
+  url: SITE_URL,
+  logo: `${SITE_URL}/og/thothfood.png`,
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "customer support",
+    email: CONTACT_EMAIL,
+  },
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "ThothFood",
+  url: SITE_URL,
+};
 
 function NotFoundComponent() {
   return (
@@ -37,10 +60,9 @@ function NotFoundComponent() {
 }
 
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
-  console.error(error);
   const router = useRouter();
   useEffect(() => {
-    reportLovableError(error, { boundary: "tanstack_root_error_component" });
+    console.error(error);
   }, [error]);
 
   return (
@@ -85,7 +107,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:title", content: "ThothFood — Hungry? Just WhatsApp it." },
       { property: "og:description", content: "Order food on WhatsApp from your favourite restaurants in Ghana. No app to download." },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: "/og/thothfood.png" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: "/og/thothfood.png" },
       { name: "theme-color", content: "#F69B12" },
     ],
     links: [
@@ -95,10 +119,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap",
       },
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
+      { rel: "stylesheet", href: appCss },
     ],
   }),
   shellComponent: RootShell,
@@ -108,10 +129,31 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 function RootShell({ children }: { children: ReactNode }) {
+  const pixelInit = PIXEL_ID
+    ? `!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','${PIXEL_ID}');fbq('track','PageView');`
+    : null;
+
   return (
     <html lang="en">
       <head>
         <HeadContent />
+        {/* Organization + WebSite structured data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify([orgSchema, websiteSchema]) }}
+        />
+        {/* Meta Pixel — only injected when VITE_META_PIXEL_ID is set */}
+        {pixelInit && (
+          <script dangerouslySetInnerHTML={{ __html: pixelInit }} />
+        )}
+        {/* Plausible Analytics — only injected when VITE_PLAUSIBLE_DOMAIN is set */}
+        {PLAUSIBLE_DOMAIN && (
+          <script
+            defer
+            data-domain={PLAUSIBLE_DOMAIN}
+            src="https://plausible.io/js/script.js"
+          />
+        )}
       </head>
       <body>
         {children}

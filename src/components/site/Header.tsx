@@ -1,10 +1,12 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Menu, X, MessageCircle } from "lucide-react";
+import { LOGIN_URL } from "@/lib/site";
+import { WhatsAppLink } from "@/components/site/WhatsAppLink";
 
 const links = [
   { to: "/how-it-works", label: "How it works" },
-  { to: "/restaurants", label: "For Restaurants" },
+  { to: "/for-restaurants", label: "For Restaurants" },
   { to: "/pricing", label: "Pricing" },
   { to: "/contact", label: "Contact" },
 ] as const;
@@ -34,13 +36,16 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="hidden md:block">
+        <div className="hidden items-center gap-2 md:flex">
           <a
-            href="https://wa.me/233000000000"
-            className="inline-flex h-10 items-center gap-2 rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground shadow-[0_8px_24px_-8px_oklch(0.745_0.165_60/0.6)] transition-transform hover:-translate-y-0.5"
+            href={LOGIN_URL}
+            className="inline-flex h-10 items-center rounded-full border border-border px-5 text-sm font-semibold text-foreground/80 transition-colors hover:bg-muted"
           >
-            Order Now
+            Restaurant Login
           </a>
+          <WhatsAppLink className="inline-flex h-10 items-center gap-2 rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground shadow-[0_8px_24px_-8px_oklch(0.745_0.165_60/0.6)] transition-transform hover:-translate-y-0.5">
+            Order Now
+          </WhatsAppLink>
         </div>
 
         <button
@@ -65,12 +70,17 @@ export function Header() {
                 {l.label}
               </Link>
             ))}
-            <a
-              href="https://wa.me/233000000000"
-              className="mt-2 inline-flex h-12 items-center justify-center rounded-full bg-primary px-5 font-semibold text-primary-foreground"
-            >
-              Order Now
-            </a>
+            <div className="mt-2 flex flex-col gap-2">
+              <a
+                href={LOGIN_URL}
+                className="inline-flex h-12 items-center justify-center rounded-full border border-border font-semibold text-foreground/80"
+              >
+                Restaurant Login
+              </a>
+              <WhatsAppLink className="inline-flex h-12 items-center justify-center rounded-full bg-primary font-semibold text-primary-foreground">
+                Order Now
+              </WhatsAppLink>
+            </div>
           </nav>
         </div>
       )}

@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { WhatsAppMock } from "@/components/site/WhatsAppMock";
-import { MessageCircle, Search, ShoppingBag, Truck, Wallet, CheckCircle2, Bell } from "lucide-react";
+import { MessageCircle, Search, ShoppingBag, List, ShoppingCart, Truck, MapPin, FileText, ClipboardList, CreditCard, Wallet, Bell } from "lucide-react";
+import { WhatsAppLink } from "@/components/site/WhatsAppLink";
 
 export const Route = createFileRoute("/how-it-works")({
   head: () => ({
@@ -9,6 +10,8 @@ export const Route = createFileRoute("/how-it-works")({
       { name: "description", content: "From craving to chow: the full ThothFood ordering journey on WhatsApp, step by step." },
       { property: "og:title", content: "How ThothFood works" },
       { property: "og:description", content: "From craving to chow: the full ThothFood ordering journey on WhatsApp." },
+      { property: "og:type", content: "website" },
+      { property: "og:image", content: "/og/thothfood.png" },
     ],
   }),
   component: HowItWorks,
@@ -18,87 +21,131 @@ const steps = [
   {
     icon: Search,
     title: "Find a restaurant",
-    desc: "Spot a ThothFood-enabled restaurant on Instagram, a flyer, or a friend's recommendation. Tap their WhatsApp link.",
+    desc: "Spot a ThothFood restaurant on Instagram, a flyer, or a friend's recommendation. Tap their WhatsApp link to open the chat.",
     mock: {
-      restaurant: "Auntie Muni's Kitchen",
+      restaurant: "Severin Plus",
       messages: [
-        { from: "them" as const, text: "Welcome to Auntie Muni's 🍲 What can we make for you today?", time: "12:00" },
+        { from: "them" as const, text: "Hey! Welcome to Severin Plus 🍲 Tap the menu icon above to browse our dishes.", time: "9:41" },
       ],
     },
   },
   {
     icon: ShoppingBag,
+    title: "Tap the catalogue icon",
+    desc: "Tap the shop icon in the WhatsApp chat header. The full menu opens instantly — no link, no browser redirect, no app required.",
+    mock: {
+      restaurant: "Severin Plus",
+      messages: [
+        { from: "them" as const, text: "👆 Tap the shop icon in the top bar to open our menu. You'll get our full catalogue — photos, prices, everything.", time: "9:41" },
+      ],
+    },
+  },
+  {
+    icon: List,
     title: "Browse the menu",
-    desc: "The full menu loads right inside WhatsApp — real photos, real prices. Powered by Meta's native Product Catalogue.",
+    desc: "Scroll a native WhatsApp product catalogue — real food photos, item descriptions, and live prices. Just like browsing a shop in chat.",
     mock: {
-      restaurant: "Auntie Muni's Kitchen",
+      restaurant: "Severin Plus",
       messages: [
-        { from: "you" as const, text: "Show me the menu 📖", time: "12:01" },
-        { from: "them" as const, card: { title: "Jollof + Chicken", price: "GHS 65", emoji: "🍗" }, time: "12:01" },
-        { from: "them" as const, card: { title: "Waakye Special", price: "GHS 45", emoji: "🍛" }, time: "12:01" },
+        { from: "them" as const, card: { title: "Jollof Rice + Chicken", price: "GHS 55", emoji: "🍗" }, time: "9:41" },
+        { from: "them" as const, card: { title: "Banku with Tilapia", price: "GHS 75", emoji: "🐟" }, time: "9:41" },
       ],
     },
   },
   {
-    icon: ShoppingBag,
-    title: "Add to cart",
-    desc: "Tap items to add. Adjust quantities. Add notes ('no shito please'). Your cart syncs in real time.",
+    icon: ShoppingCart,
+    title: "Add items to your cart",
+    desc: "Tap + on anything you want. Change quantities. Your cart total updates live as you shop. When you're ready, tap 'Place Your Order'.",
     mock: {
-      restaurant: "Auntie Muni's Kitchen",
+      restaurant: "Severin Plus",
       messages: [
-        { from: "you" as const, text: "2x Jollof + Chicken. No shito 🙏", time: "12:03" },
-        { from: "them" as const, text: "Got it. Cart: 2x Jollof + Chicken — GHS 130", time: "12:03" },
+        { from: "them" as const, text: "🛒 Your Cart\n• Jollof Rice + Chicken × 1  GHS 55\n• Banku with Tilapia × 1  GHS 75\n\nSubtotal: GHS 130.00\n\nHow would you like to receive your order?", time: "9:41" },
       ],
     },
   },
   {
     icon: Truck,
     title: "Delivery or pickup",
-    desc: "Pick delivery and drop a pin, or schedule a pickup time. Delivery fees are calculated by zone — no surprises.",
+    desc: "Reply with one tap — 🚚 Delivery or 🏃 Pickup. Delivery fees are calculated by zone, shown upfront. No surprise charges.",
     mock: {
-      restaurant: "Auntie Muni's Kitchen",
+      restaurant: "Severin Plus",
       messages: [
-        { from: "them" as const, text: "Delivery or pickup?", time: "12:04" },
-        { from: "you" as const, text: "Delivery to East Legon 📍", time: "12:04" },
-        { from: "them" as const, text: "Delivery fee: GHS 15. Total: GHS 145.", time: "12:04" },
+        { from: "them" as const, text: "How would you like to receive your order?\n\n🚚 Delivery   🏃 Pickup   ✏️ Update", time: "9:41" },
+        { from: "you" as const, text: "🚚 Delivery", time: "9:41" },
+      ],
+    },
+  },
+  {
+    icon: MapPin,
+    title: "Share your delivery address",
+    desc: "Type your address or drop a pin. The restaurant confirms your delivery zone and fee immediately.",
+    mock: {
+      restaurant: "Severin Plus",
+      messages: [
+        { from: "them" as const, text: "Please share your delivery address 📍", time: "9:41" },
+        { from: "you" as const, text: "Tf Hostel, UG 📍", time: "9:42" },
+        { from: "them" as const, text: "Got it! Delivery fee: GHS 20.00", time: "9:42" },
+      ],
+    },
+  },
+  {
+    icon: FileText,
+    title: "Add notes or skip",
+    desc: "Tell the kitchen anything — allergies, extra sauce, 'no shito please'. Or just tap Skip and we'll handle it as-is.",
+    mock: {
+      restaurant: "Severin Plus",
+      messages: [
+        { from: "them" as const, text: "Any notes for the kitchen? (allergies, special requests…)\n\n⏭️ Skip", time: "9:42" },
+        { from: "you" as const, text: "⏭️ Skip", time: "9:42" },
+      ],
+    },
+  },
+  {
+    icon: ClipboardList,
+    title: "Review the order summary",
+    desc: "See the full breakdown: items, delivery fee, and total. Everything correct? Tap Confirm & Pay. Need to change something? Tap Update.",
+    mock: {
+      restaurant: "Severin Plus",
+      messages: [
+        { from: "them" as const, text: "Order Summary 🧾\n\nJollof Rice + Chicken ×1  GHS 55\nBanku with Tilapia ×1  GHS 75\nDelivery fee:  GHS 20\n──────────────\nTOTAL:  GHS 150.00\n\nDelivery to: Tf Hostel, UG", time: "9:42" },
+        { from: "you" as const, text: "✅ Confirm & Pay", time: "9:43" },
+      ],
+    },
+  },
+  {
+    icon: CreditCard,
+    title: "Choose your payment method",
+    desc: "Pay online via Paystack (MoMo or card) or choose Cash on Delivery. One reply tap — you're done.",
+    mock: {
+      restaurant: "Severin Plus",
+      messages: [
+        { from: "them" as const, text: "How would you like to pay? 💳\n\n💳 Pay Online   💵 Cash on Delivery", time: "9:43" },
+        { from: "you" as const, text: "💳 Pay Online", time: "9:43" },
+        { from: "them" as const, text: "Complete your payment here 💳\n→ checkout.paystack.com/...", time: "9:43" },
       ],
     },
   },
   {
     icon: Wallet,
-    title: "Pay with MoMo",
-    desc: "Tap the secure checkout link. Pay with Mobile Money or card via Paystack. Back in chat in seconds.",
+    title: "Complete Paystack checkout",
+    desc: "A secure Paystack page opens. Pay with MTN MoMo, Telecel, AirtelTigo, or any card. Confirmed in seconds — you're back in chat.",
     mock: {
-      restaurant: "Auntie Muni's Kitchen",
+      restaurant: "Severin Plus",
       messages: [
-        { from: "them" as const, text: "Tap to pay → paystack.com/...", time: "12:05" },
-        { from: "you" as const, text: "Paid ✅", time: "12:06" },
-        { from: "them" as const, text: "✅ Payment confirmed. Sending to the kitchen!", time: "12:06" },
+        { from: "you" as const, text: "💳 Pay Now", time: "9:43" },
+        { from: "them" as const, text: "✅ Payment confirmed! GHS 150.00 received. Sending to the kitchen 🍳", time: "9:43" },
       ],
     },
   },
   {
     icon: Bell,
-    title: "Track in WhatsApp",
-    desc: "Get live updates: kitchen accepted, food cooking, rider dispatched, almost there. All in the same chat thread.",
+    title: "Order confirmed — track live",
+    desc: "You get an order confirmation with a live tracking link. A separate update arrives the moment the kitchen accepts and starts cooking.",
     mock: {
-      restaurant: "Auntie Muni's Kitchen",
+      restaurant: "Severin Plus",
       messages: [
-        { from: "them" as const, text: "👨‍🍳 Kitchen is on it.", time: "12:10" },
-        { from: "them" as const, text: "🛵 Rider Kwame is on the way!", time: "12:24" },
-        { from: "them" as const, text: "📍 2 minutes away.", time: "12:30" },
-      ],
-    },
-  },
-  {
-    icon: CheckCircle2,
-    title: "Eat. Repeat.",
-    desc: "Food arrives. You eat. Next time you're hungry, the chat's already there — just say 'menu' and go again.",
-    mock: {
-      restaurant: "Auntie Muni's Kitchen",
-      messages: [
-        { from: "them" as const, text: "🎉 Delivered. Enjoy your meal!", time: "12:32" },
-        { from: "you" as const, text: "🔥🔥🔥", time: "12:45" },
+        { from: "them" as const, text: "Order Confirmed! 🎉\n\nOrder #0042\nDelivery to: Tf Hostel, UG\nTotal paid: GHS 150.00\n\n📦 Track My Order →", time: "9:44" },
+        { from: "them" as const, text: "✅ Severin Plus has accepted your order! Your food is being prepared 👨‍🍳", time: "9:45" },
       ],
     },
   },
@@ -159,14 +206,11 @@ function HowItWorks() {
             No accounts. No app store. No "we sent you an email." Just food, fast.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <a
-              href="https://wa.me/233000000000"
-              className="inline-flex h-14 items-center gap-2 rounded-full bg-primary px-7 font-semibold text-primary-foreground"
-            >
+            <WhatsAppLink className="inline-flex h-14 items-center gap-2 rounded-full bg-primary px-7 font-semibold text-primary-foreground">
               <MessageCircle className="h-5 w-5" /> Order on WhatsApp
-            </a>
+            </WhatsAppLink>
             <Link
-              to="/restaurants"
+              to="/for-restaurants"
               className="inline-flex h-14 items-center rounded-full border border-border bg-background px-7 font-semibold text-foreground hover:bg-muted"
             >
               I run a restaurant

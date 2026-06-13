@@ -1,25 +1,64 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, type FormEvent } from "react";
-import { Mail, MapPin, MessageCircle, Send, CheckCircle2 } from "lucide-react";
+import { useState, useRef, type FormEvent } from "react";
+import { Mail, MapPin, MessageCircle, Send, CheckCircle2, ArrowRight } from "lucide-react";
+import { WHATSAPP_ORDER_URL, SIGNUP_URL, CONTACT_EMAIL, API_URL } from "@/lib/site";
+import { trackContactSubmit } from "@/lib/pixel";
 
 export const Route = createFileRoute("/contact")({
+  validateSearch: (search: Record<string, unknown>) => ({
+    role: search.role === "restaurant" ? "restaurant" : undefined,
+  }),
   head: () => ({
     meta: [
       { title: "Contact — ThothFood" },
       { name: "description", content: "Get in touch with the ThothFood team. Customer or restaurant owner — we'd love to hear from you." },
       { property: "og:title", content: "Contact ThothFood" },
-      { property: "og:description", content: "Reach the ThothFood team in Accra." },
+      { property: "og:description", content: "Reach the ThothFood team in Accra. Fastest reply via WhatsApp." },
+      { property: "og:type", content: "website" },
+      { property: "og:image", content: "/og/thothfood.png" },
     ],
   }),
   component: Contact,
 });
 
 function Contact() {
+  const { role } = Route.useSearch();
+  const [intent, setIntent] = useState<string>(role ?? "");
   const [sent, setSent] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+  const honeypotRef = useRef<HTMLInputElement>(null);
 
-  const submit = (e: FormEvent) => {
+  const submit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSent(true);
+    // Honeypot check — bots fill the hidden field
+    if (honeypotRef.current?.value) return;
+
+    setLoading(true);
+    setError(null);
+
+    const form = e.currentTarget;
+    const data = {
+      intent,
+      name: (form.elements.namedItem("name") as HTMLInputElement).value,
+      email: (form.elements.namedItem("email") as HTMLInputElement).value,
+      message: (form.elements.namedItem("message") as HTMLTextAreaElement).value,
+    };
+
+    try {
+      const res = await fetch(`${API_URL}/api/public/contact`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) throw new Error("server_error");
+      trackContactSubmit();
+      setSent(true);
+    } catch {
+      setError("Something went wrong. Try WhatsApp below — it's faster anyway.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -53,68 +92,119 @@ function Contact() {
                 </p>
               </div>
             ) : (
-              <form onSubmit={submit} className="space-y-5">
-                <div>
-                  <label className="text-sm font-semibold">I am a…</label>
-                  <select
-                    required
-                    defaultValue=""
-                    className="mt-2 h-12 w-full rounded-xl border border-border bg-background px-4 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
-                  >
-                    <option value="" disabled>Select one</option>
-                    <option value="customer">Customer</option>
-                    <option value="restaurant">Restaurant owner</option>
-                    <option value="other">Something else</option>
-                  </select>
-                </div>
-                <div className="grid gap-5 sm:grid-cols-2">
-                  <div>
-                    <label className="text-sm font-semibold">Name</label>
-                    <input
-                      required
-                      type="text"
-                      placeholder="Ama Boateng"
-                      className="mt-2 h-12 w-full rounded-xl border border-border bg-background px-4 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
-                    />
+              <>
+                {/* Restaurant nudge */}
+                {intent === "restaurant" && (
+                  <div className="mb-6 flex items-center justify-between gap-4 rounded-2xl border border-primary/30 bg-primary/5 px-5 py-4">
+                    <div>
+                      <p className="text-sm font-semibold text-foreground">Want to list your restaurant?</p>
+                      <p className="mt-0.5 text-xs text-foreground/60">Sign up free and be live in days — no call needed.</p>
+                    </div>
+                    <a
+                      href={SIGNUP_URL}
+                      className="inline-flex h-9 flex-shrink-0 items-center gap-1.5 rounded-full bg-primary px-4 text-xs font-semibold text-primary-foreground"
+                    >
+                      Start free <ArrowRight className="h-3 w-3" />
+                    </a>
                   </div>
-                  <div>
-                    <label className="text-sm font-semibold">Email</label>
-                    <input
-                      required
-                      type="email"
-                      placeholder="you@example.com"
-                      className="mt-2 h-12 w-full rounded-xl border border-border bg-background px-4 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label className="text-sm font-semibold">Message</label>
-                  <textarea
-                    required
-                    rows={6}
-                    placeholder="Tell us what's on your mind…"
-                    className="mt-2 w-full resize-none rounded-xl border border-border bg-background p-4 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
+                )}
+
+                <form onSubmit={submit} className="space-y-5">
+                  {/* Honeypot — hidden from real users, traps bots */}
+                  <input
+                    ref={honeypotRef}
+                    name="website"
+                    type="text"
+                    tabIndex={-1}
+                    aria-hidden="true"
+                    style={{ position: "absolute", opacity: 0, pointerEvents: "none" }}
                   />
-                </div>
-                <button
-                  type="submit"
-                  className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-full bg-primary px-7 font-semibold text-primary-foreground shadow-[0_12px_30px_-12px_oklch(0.745_0.165_60/0.6)] sm:w-auto"
-                >
-                  Send message <Send className="h-4 w-4" />
-                </button>
-              </form>
+
+                  <div>
+                    <label className="text-sm font-semibold">I am a…</label>
+                    <select
+                      required
+                      name="intent"
+                      value={intent}
+                      onChange={(e) => setIntent(e.target.value)}
+                      className="mt-2 h-12 w-full rounded-xl border border-border bg-background px-4 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
+                    >
+                      <option value="" disabled>Select one</option>
+                      <option value="customer">Customer</option>
+                      <option value="restaurant">Restaurant owner</option>
+                      <option value="other">Something else</option>
+                    </select>
+                  </div>
+                  <div className="grid gap-5 sm:grid-cols-2">
+                    <div>
+                      <label className="text-sm font-semibold">Name</label>
+                      <input
+                        required
+                        name="name"
+                        type="text"
+                        placeholder="Ama Boateng"
+                        className="mt-2 h-12 w-full rounded-xl border border-border bg-background px-4 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-sm font-semibold">Email</label>
+                      <input
+                        required
+                        name="email"
+                        type="email"
+                        placeholder="you@example.com"
+                        className="mt-2 h-12 w-full rounded-xl border border-border bg-background px-4 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="text-sm font-semibold">Message</label>
+                    <textarea
+                      required
+                      name="message"
+                      rows={6}
+                      placeholder="Tell us what's on your mind…"
+                      className="mt-2 w-full resize-none rounded-xl border border-border bg-background p-4 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
+                    />
+                  </div>
+                  {error && (
+                    <p className="rounded-xl bg-destructive/10 px-4 py-3 text-sm text-destructive">{error}</p>
+                  )}
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-full bg-primary px-7 font-semibold text-primary-foreground shadow-[0_12px_30px_-12px_oklch(0.745_0.165_60/0.6)] disabled:opacity-60 sm:w-auto"
+                  >
+                    {loading ? "Sending…" : <><span>Send message</span> <Send className="h-4 w-4" /></>}
+                  </button>
+                </form>
+              </>
             )}
           </div>
 
           {/* Info */}
           <div className="space-y-5">
+            {/* WhatsApp — preferred channel */}
+            <div className="rounded-2xl bg-dark p-6 text-dark-foreground">
+              <span className="grid h-11 w-11 place-items-center rounded-xl bg-success text-success-foreground">
+                <MessageCircle className="h-5 w-5" />
+              </span>
+              <h3 className="mt-5 font-display text-lg font-bold">Fastest: WhatsApp us</h3>
+              <p className="mt-1 text-white/65">Message the team directly — we reply faster here than anywhere else.</p>
+              <a
+                href={WHATSAPP_ORDER_URL}
+                className="mt-4 inline-flex h-11 items-center gap-2 rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground"
+              >
+                <MessageCircle className="h-4 w-4" /> Open WhatsApp
+              </a>
+            </div>
             <div className="rounded-2xl border border-border bg-secondary p-6">
               <span className="grid h-11 w-11 place-items-center rounded-xl bg-primary text-primary-foreground">
                 <Mail className="h-5 w-5" />
               </span>
               <h3 className="mt-5 font-display text-lg font-bold">Email</h3>
               <p className="mt-1 text-foreground/65">
-                <a href="mailto:contact@thothai.com" className="hover:text-primary">contact@thothai.com</a>
+                <a href={`mailto:${CONTACT_EMAIL}`} className="hover:text-primary">{CONTACT_EMAIL}</a>
               </p>
             </div>
             <div className="rounded-2xl border border-border bg-secondary p-6">
@@ -123,19 +213,6 @@ function Contact() {
               </span>
               <h3 className="mt-5 font-display text-lg font-bold">Based in</h3>
               <p className="mt-1 text-foreground/65">Accra, Ghana 🇬🇭<br />Serving customers and restaurants across the country.</p>
-            </div>
-            <div className="rounded-2xl bg-dark p-6 text-dark-foreground">
-              <span className="grid h-11 w-11 place-items-center rounded-xl bg-success text-success-foreground">
-                <MessageCircle className="h-5 w-5" />
-              </span>
-              <h3 className="mt-5 font-display text-lg font-bold">Just want food?</h3>
-              <p className="mt-1 text-white/65">Skip the form — message a ThothFood restaurant on WhatsApp and start ordering.</p>
-              <a
-                href="https://wa.me/233000000000"
-                className="mt-4 inline-flex h-11 items-center gap-2 rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground"
-              >
-                Open WhatsApp
-              </a>
             </div>
           </div>
         </div>

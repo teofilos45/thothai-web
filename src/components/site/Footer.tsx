@@ -1,5 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Instagram, Twitter, Facebook, MessageCircle, Sparkles } from "lucide-react";
+import { SIGNUP_URL, LOGIN_URL, CONTACT_EMAIL, SOCIAL_URLS } from "@/lib/site";
+import { trackStartFree } from "@/lib/pixel";
 
 export function Footer() {
   return (
@@ -21,6 +23,7 @@ export function Footer() {
             </div>
             <Link
               to="/contact"
+              search={{ role: undefined }}
               className="inline-flex h-12 items-center rounded-full bg-white/10 px-6 text-sm font-semibold text-white transition-colors hover:bg-white/15"
             >
               Get early access
@@ -48,35 +51,43 @@ export function Footer() {
             <h4 className="font-display text-sm font-bold uppercase tracking-wider text-white/50">Product</h4>
             <ul className="mt-4 space-y-3 text-sm">
               <li><Link to="/how-it-works" className="text-white/70 hover:text-primary">How it works</Link></li>
-              <li><Link to="/restaurants" className="text-white/70 hover:text-primary">For Restaurants</Link></li>
+              <li><Link to="/for-restaurants" className="text-white/70 hover:text-primary">For Restaurants</Link></li>
               <li><Link to="/pricing" className="text-white/70 hover:text-primary">Pricing</Link></li>
-              <li><Link to="/contact" className="text-white/70 hover:text-primary">Contact</Link></li>
+              <li><a href={SIGNUP_URL} onClick={trackStartFree} className="text-white/70 hover:text-primary">Start free</a></li>
+              <li><a href={LOGIN_URL} className="text-white/70 hover:text-primary">Restaurant Login</a></li>
+              <li><Link to="/contact" search={{ role: undefined }} className="text-white/70 hover:text-primary">Contact</Link></li>
             </ul>
           </div>
 
           <div>
             <h4 className="font-display text-sm font-bold uppercase tracking-wider text-white/50">Follow</h4>
             <div className="mt-4 flex gap-3">
-              {[Instagram, Twitter, Facebook].map((Icon, i) => (
+              {[
+                { Icon: Instagram, href: SOCIAL_URLS.instagram, label: "Instagram" },
+                { Icon: Twitter, href: SOCIAL_URLS.twitter, label: "Twitter" },
+                { Icon: Facebook, href: SOCIAL_URLS.facebook, label: "Facebook" },
+              ].map(({ Icon, href, label }) => (
                 <a
-                  key={i}
-                  href="#"
+                  key={label}
+                  href={href}
                   className="grid h-10 w-10 place-items-center rounded-full border border-white/15 text-white/70 transition-colors hover:border-primary hover:text-primary"
-                  aria-label="Social"
+                  aria-label={label}
                 >
                   <Icon className="h-4 w-4" />
                 </a>
               ))}
             </div>
-            <p className="mt-6 text-xs text-white/40">
-              contact@thothai.com
-            </p>
+            <p className="mt-6 text-xs text-white/40">{CONTACT_EMAIL}</p>
           </div>
         </div>
 
         <div className="mt-12 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/40 md:flex-row md:items-center">
           <p>© {new Date().getFullYear()} ThothAI Technologies. All rights reserved.</p>
-          <p>Made with 🌶️ in Accra</p>
+          <div className="flex gap-4">
+            <Link to="/terms" className="hover:text-white/70">Terms</Link>
+            <Link to="/privacy" className="hover:text-white/70">Privacy</Link>
+            <p>Made with 🌶️ in Accra</p>
+          </div>
         </div>
       </div>
     </footer>
