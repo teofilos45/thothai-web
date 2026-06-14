@@ -84,6 +84,7 @@ export function Footer() {
         <div className="mt-12 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/40 md:flex-row md:items-center">
           <p>© {new Date().getFullYear()} ThothAI Technologies. All rights reserved.</p>
           <div className="flex gap-4">
+            <Link to="/company" className="hover:text-white/70">Company</Link>
             <Link to="/terms" className="hover:text-white/70">Terms</Link>
             <Link to="/privacy" className="hover:text-white/70">Privacy</Link>
             <p>Made with 🌶️ in Accra</p>

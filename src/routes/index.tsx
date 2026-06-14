@@ -99,27 +99,36 @@ function Home() {
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative flex justify-center"
+            className="flex flex-col items-center"
           >
-            <div className="absolute -inset-8 -z-10 rounded-[3rem] bg-gradient-to-br from-primary/30 via-transparent to-success/20 blur-3xl" />
-            <div className="relative">
+            <div
+              style={{
+                borderRadius: "48px",
+                padding: "10px",
+                background: "linear-gradient(145deg, #2a2a2a, #1a1a1a)",
+                boxShadow: "0 0 0 1px #333, 0 40px 80px rgba(0,0,0,0.6), inset 0 0 0 1px #444",
+              }}
+            >
               <iframe
                 ref={demoRef}
                 src="/demo/thothfood-demo.html"
                 title="ThothFood live demo"
                 style={{
-                  width: "420px",
-                  height: "710px",
+                  width: "390px",
+                  height: "780px",
                   border: "none",
                   display: "block",
+                  borderRadius: "40px",
                 }}
                 loading="lazy"
               />
+            </div>
+            <div className="mt-4 flex justify-center">
               <button
                 onClick={replayDemo}
-                className="absolute bottom-3 right-3 flex items-center gap-1.5 rounded-full border border-white/20 bg-black/50 px-3 py-1.5 text-xs font-semibold text-white/70 backdrop-blur-sm transition-all hover:bg-black/70 hover:text-white"
+                className="flex items-center gap-1.5 rounded-full border border-white/20 bg-white/5 px-4 py-2 text-xs font-semibold text-white/60 backdrop-blur-sm transition-all hover:bg-white/10 hover:text-white"
               >
-                <RotateCcw className="h-3 w-3" /> Replay
+                <RotateCcw className="h-3 w-3" /> Replay demo
               </button>
             </div>
           </motion.div>

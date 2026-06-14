@@ -10,6 +10,7 @@ const entries = [
   { path: "/for-restaurants",priority: "0.9", changefreq: "monthly" },
   { path: "/pricing",         priority: "0.8", changefreq: "monthly" },
   { path: "/contact",         priority: "0.6", changefreq: "yearly" },
+  { path: "/company",          priority: "0.7", changefreq: "monthly" },
   { path: "/terms",           priority: "0.3", changefreq: "yearly" },
   { path: "/privacy",         priority: "0.3", changefreq: "yearly" },
 ];
