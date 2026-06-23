@@ -6,7 +6,7 @@ import {
 import { SIGNUP_URL } from "@/lib/site";
 import { trackStartFree } from "@/lib/pixel";
 
-export const Route = createFileRoute("/for-restaurants")({
+export const Route = createFileRoute("/thothfood/for-restaurants")({
   head: () => ({
     meta: [
       { title: "For Restaurants — ThothFood" },
@@ -61,7 +61,7 @@ function ForRestaurants() {
                 Start free <ArrowRight className="h-4 w-4" />
               </a>
               <Link
-                to="/pricing"
+                to="/thothfood/pricing"
                 className="inline-flex h-14 items-center rounded-full border border-border px-6 font-semibold hover:bg-muted"
               >
                 See pricing

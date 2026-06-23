@@ -7,7 +7,8 @@ type Message = {
   card?: {
     title: string;
     price: string;
-    emoji: string;
+    emoji?: string;
+    image?: string;
   };
 };
 
@@ -35,7 +36,7 @@ export function WhatsAppMock({
   status?: string;
 }) {
   return (
-    <div className="mx-auto w-full max-w-[360px] overflow-hidden rounded-[2.25rem] border-[10px] border-dark bg-dark shadow-[0_30px_80px_-20px_oklch(0.18_0.005_50/0.45)]">
+    <div className="mx-auto w-full max-w-[300px] overflow-hidden rounded-[2.25rem] border-[10px] border-dark bg-dark shadow-[0_30px_80px_-20px_oklch(0.18_0.005_50/0.45)]">
       {/* Header */}
       <div className="flex items-center gap-3 bg-[#075E54] px-4 py-3 text-white">
         <div className="grid h-10 w-10 place-items-center rounded-full bg-primary text-base font-bold text-primary-foreground">
@@ -51,23 +52,29 @@ export function WhatsAppMock({
       <div
         className="space-y-2 px-3 py-4"
         style={{
-          background:
-            "linear-gradient(180deg, #ECE5DD 0%, #E4DDD2 100%)",
-          minHeight: "440px",
+          background: "linear-gradient(180deg, #ECE5DD 0%, #E4DDD2 100%)",
+          minHeight: "280px",
         }}
       >
         {messages.map((m, i) => {
           if (m.card) {
             return (
               <div key={i} className="flex">
-                <div className="ml-1 max-w-[78%] overflow-hidden rounded-2xl rounded-tl-md bg-white shadow-sm">
-                  <div className="grid h-32 w-full place-items-center bg-accent text-5xl">
-                    {m.card.emoji}
-                  </div>
-                  <div className="p-3">
-                    <p className="text-sm font-semibold text-foreground">{m.card.title}</p>
-                    <p className="mt-0.5 text-base font-bold text-primary">{m.card.price}</p>
-                    <button className="mt-2 w-full rounded-lg bg-primary py-2 text-xs font-semibold text-primary-foreground">
+                <div className="ml-1 max-w-[82%] overflow-hidden rounded-2xl rounded-tl-md bg-white shadow-sm">
+                  {m.card.image ? (
+                    <img
+                      src={m.card.image}
+                      alt={m.card.title}
+                      className="h-16 w-full object-cover"
+                      onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
+                    />
+                  ) : (
+                    <div className="grid h-16 w-full place-items-center bg-accent text-4xl">{m.card.emoji}</div>
+                  )}
+                  <div className="p-2.5">
+                    <p className="text-xs font-semibold text-foreground">{m.card.title}</p>
+                    <p className="mt-0.5 text-sm font-bold text-primary">{m.card.price}</p>
+                    <button className="mt-1.5 w-full rounded-lg bg-primary py-1.5 text-[11px] font-semibold text-primary-foreground">
                       Add to cart
                     </button>
                   </div>
@@ -79,13 +86,13 @@ export function WhatsAppMock({
           return (
             <div key={i} className={`flex ${mine ? "justify-end" : "justify-start"}`}>
               <div
-                className={`max-w-[80%] rounded-2xl px-3 py-2 text-[13px] leading-snug shadow-sm ${
+                className={`max-w-[85%] rounded-2xl px-3 py-2 text-[12px] leading-snug shadow-sm ${
                   mine
                     ? "rounded-tr-md bg-[#DCF8C6] text-foreground"
                     : "rounded-tl-md bg-white text-foreground"
                 }`}
               >
-                <p>{m.text}</p>
+                <p className="whitespace-pre-wrap break-words">{m.text}</p>
                 <div className="mt-0.5 flex items-center justify-end gap-1 text-[10px] text-foreground/50">
                   <span>{m.time}</span>
                   {mine && <Check className="h-3 w-3 text-info" />}

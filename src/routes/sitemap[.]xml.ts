@@ -5,14 +5,17 @@ import { SITE_URL } from "@/lib/site";
 const lastmod = new Date().toISOString().split("T")[0];
 
 const entries = [
-  { path: "/",                priority: "1.0", changefreq: "weekly" },
-  { path: "/how-it-works",   priority: "0.9", changefreq: "monthly" },
-  { path: "/for-restaurants",priority: "0.9", changefreq: "monthly" },
-  { path: "/pricing",         priority: "0.8", changefreq: "monthly" },
-  { path: "/contact",         priority: "0.6", changefreq: "yearly" },
-  { path: "/company",          priority: "0.7", changefreq: "monthly" },
-  { path: "/terms",           priority: "0.3", changefreq: "yearly" },
-  { path: "/privacy",         priority: "0.3", changefreq: "yearly" },
+  { path: "/",                          priority: "1.0", changefreq: "weekly" },
+  { path: "/about",                     priority: "0.7", changefreq: "monthly" },
+  { path: "/products",                  priority: "0.8", changefreq: "monthly" },
+  { path: "/thothfood",                 priority: "1.0", changefreq: "weekly" },
+  { path: "/thothfood/how-it-works",    priority: "0.9", changefreq: "monthly" },
+  { path: "/thothfood/for-restaurants", priority: "0.9", changefreq: "monthly" },
+  { path: "/thothfood/pricing",         priority: "0.8", changefreq: "monthly" },
+  { path: "/thothshop",                 priority: "0.5", changefreq: "monthly" },
+  { path: "/contact",                   priority: "0.6", changefreq: "yearly" },
+  { path: "/terms",                     priority: "0.3", changefreq: "yearly" },
+  { path: "/privacy",                   priority: "0.3", changefreq: "yearly" },
 ];
 
 export const Route = createFileRoute("/sitemap.xml")({

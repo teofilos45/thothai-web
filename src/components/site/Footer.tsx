@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Instagram, Twitter, Facebook, MessageCircle, Sparkles } from "lucide-react";
+import { Instagram, Twitter, Facebook, Sparkles } from "lucide-react";
 import { SIGNUP_URL, LOGIN_URL, CONTACT_EMAIL, SOCIAL_URLS } from "@/lib/site";
 import { trackStartFree } from "@/lib/pixel";
 
@@ -22,8 +22,7 @@ export function Footer() {
               </p>
             </div>
             <Link
-              to="/contact"
-              search={{ role: undefined }}
+              to="/thothshop"
               className="inline-flex h-12 items-center rounded-full bg-white/10 px-6 text-sm font-semibold text-white transition-colors hover:bg-white/15"
             >
               Get early access
@@ -34,25 +33,27 @@ export function Footer() {
         <div className="grid gap-10 md:grid-cols-4">
           <div className="md:col-span-2">
             <Link to="/" className="flex items-center gap-2 font-display text-2xl font-extrabold">
-              <span className="grid h-9 w-9 place-items-center rounded-lg bg-primary text-primary-foreground">
-                <MessageCircle className="h-4 w-4" strokeWidth={2.5} />
+              <span className="grid h-9 w-9 place-items-center rounded-lg bg-primary text-primary-foreground text-base font-black">
+                T
               </span>
-              Thoth<span className="text-primary">Food</span>
+              ThothAI<span className="text-primary">Technologies</span>
             </Link>
             <p className="mt-4 max-w-sm text-sm text-white/55">
-              Hungry? Just WhatsApp it. Order food from your favourite spots in Ghana — no app, no stress.
+              Building the commerce layer for Africa on WhatsApp. Food, fashion, everything — one chat away.
             </p>
             <p className="mt-6 text-xs text-white/40">
-              A product of ThothAI Technologies · Accra, Ghana
+              Accra, Ghana
             </p>
           </div>
 
           <div>
-            <h4 className="font-display text-sm font-bold uppercase tracking-wider text-white/50">Product</h4>
+            <h4 className="font-display text-sm font-bold uppercase tracking-wider text-white/50">Products</h4>
             <ul className="mt-4 space-y-3 text-sm">
-              <li><Link to="/how-it-works" className="text-white/70 hover:text-primary">How it works</Link></li>
-              <li><Link to="/for-restaurants" className="text-white/70 hover:text-primary">For Restaurants</Link></li>
-              <li><Link to="/pricing" className="text-white/70 hover:text-primary">Pricing</Link></li>
+              <li><Link to="/thothfood" className="text-white/70 hover:text-primary">ThothFood</Link></li>
+              <li><Link to="/thothshop" className="text-white/70 hover:text-primary">ThothShop</Link></li>
+              <li><Link to="/thothfood/how-it-works" className="text-white/70 hover:text-primary">How it works</Link></li>
+              <li><Link to="/thothfood/for-restaurants" className="text-white/70 hover:text-primary">For Restaurants</Link></li>
+              <li><Link to="/thothfood/pricing" className="text-white/70 hover:text-primary">Pricing</Link></li>
               <li><a href={SIGNUP_URL} onClick={trackStartFree} className="text-white/70 hover:text-primary">Start free</a></li>
               <li><a href={LOGIN_URL} className="text-white/70 hover:text-primary">Restaurant Login</a></li>
               <li><Link to="/contact" search={{ role: undefined }} className="text-white/70 hover:text-primary">Contact</Link></li>
@@ -84,7 +85,6 @@ export function Footer() {
         <div className="mt-12 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/40 md:flex-row md:items-center">
           <p>© {new Date().getFullYear()} ThothAI Technologies. All rights reserved.</p>
           <div className="flex gap-4">
-            <Link to="/company" className="hover:text-white/70">Company</Link>
             <Link to="/terms" className="hover:text-white/70">Terms</Link>
             <Link to="/privacy" className="hover:text-white/70">Privacy</Link>
             <p>Made with 🌶️ in Accra</p>

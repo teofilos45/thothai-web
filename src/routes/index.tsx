@@ -1,330 +1,204 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { MessageCircle, ShoppingBag, Wallet, MapPin, Sparkles, Shield, Bot, Smartphone, ArrowRight, RotateCcw } from "lucide-react";
+import { ArrowRight, MessageCircle, Sparkles, Mail, MapPin } from "lucide-react";
+import { CONTACT_EMAIL, SIGNUP_URL } from "@/lib/site";
 import { motion } from "motion/react";
-import { useRef } from "react";
-import { WHATSAPP_ORDER_URL, SIGNUP_URL } from "@/lib/site";
-import { trackStartFree } from "@/lib/pixel";
-import { WhatsAppLink } from "@/components/site/WhatsAppLink";
-import { featuredRestaurants } from "@/data/featured-restaurants";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "ThothFood — Hungry? Just WhatsApp it." },
-      { name: "description", content: "Order food on WhatsApp from your favourite restaurants in Ghana. No app, no stress. Pay with MoMo or card." },
-      { property: "og:title", content: "ThothFood — Hungry? Just WhatsApp it." },
-      { property: "og:description", content: "Order food on WhatsApp from your favourite restaurants in Ghana. No app, no account, no stress." },
+      { title: "ThothAI Technologies — Building the commerce layer for Africa on WhatsApp" },
+      { name: "description", content: "ThothAI Technologies builds WhatsApp-native commerce infrastructure for Africa. ThothFood lets restaurants take orders on WhatsApp. ThothShop brings the same to every merchant." },
+      { property: "og:title", content: "ThothAI Technologies" },
+      { property: "og:description", content: "Building the commerce layer for Africa on WhatsApp." },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: "/og/thothfood.png" },
     ],
   }),
   component: Home,
 });
 
+const products = [
+  {
+    name: "ThothFood",
+    status: "live" as const,
+    tagline: "Order food on WhatsApp.",
+    desc: "WhatsApp-native food ordering for restaurants in Ghana. Real-time kitchen dashboard, MoMo & card payments, delivery zones, live order tracking — all inside the chat your customers already use.",
+    href: "/thothfood",
+    cta: "Order now",
+    icon: "🍲",
+  },
+  {
+    name: "ThothShop",
+    status: "coming" as const,
+    tagline: "Sell anything on WhatsApp.",
+    desc: "WhatsApp commerce for every small business in Ghana. Clothing, electronics, beauty, crafts — same infrastructure as ThothFood, extended to every merchant category.",
+    href: "/thothshop",
+    cta: "Join waitlist",
+    icon: "🛍️",
+  },
+];
+
 function Home() {
-  const demoRef = useRef<HTMLIFrameElement>(null);
-
-  function replayDemo() {
-    if (demoRef.current) demoRef.current.src = demoRef.current.src;
-  }
-
   return (
     <>
       {/* HERO */}
-      <section className="relative overflow-hidden bg-dark text-dark-foreground">
+      <section className="relative overflow-hidden bg-dark py-24 text-dark-foreground md:py-32">
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 opacity-50"
+          className="pointer-events-none absolute inset-0 opacity-40"
           style={{
             background:
-              "radial-gradient(60% 50% at 80% 0%, oklch(0.745 0.165 60 / 0.35) 0%, transparent 70%), radial-gradient(40% 40% at 10% 100%, oklch(0.72 0.18 145 / 0.18) 0%, transparent 70%)",
+              "radial-gradient(60% 50% at 70% 0%, oklch(0.745 0.165 60 / 0.4) 0%, transparent 70%), radial-gradient(40% 40% at 20% 100%, oklch(0.72 0.18 145 / 0.15) 0%, transparent 70%)",
           }}
         />
-        <div className="container-page relative grid gap-12 py-20 md:grid-cols-2 md:items-center md:py-28 lg:py-32">
-          <div>
-            <motion.span
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-white/80"
-            >
-              <span className="h-1.5 w-1.5 rounded-full bg-success" />
-              Live in Accra
-            </motion.span>
-            <motion.h1
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.05 }}
-              className="mt-5 font-display text-5xl font-extrabold leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl"
-            >
-              Order food on{" "}
-              <span className="relative inline-block">
-                <span className="relative z-10 text-primary">WhatsApp.</span>
-              </span>
-              <br />
-              No app. No stress.
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="mt-6 max-w-lg text-lg text-white/70"
-            >
-              If you can text, you can eat. Browse menus, pay with MoMo, and track your delivery — all without leaving your favourite chat app.
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.15 }}
-              className="mt-8 flex flex-wrap items-center gap-4"
-            >
-              <WhatsAppLink className="group inline-flex h-14 items-center gap-2 rounded-full bg-primary px-7 text-base font-semibold text-primary-foreground shadow-[0_12px_40px_-12px_oklch(0.745_0.165_60/0.7)] transition-transform hover:-translate-y-0.5">
-                Order Now
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-              </WhatsAppLink>
-              <Link
-                to="/how-it-works"
-                className="inline-flex h-14 items-center rounded-full border border-white/20 px-6 text-base font-semibold text-white/90 hover:bg-white/5"
-              >
-                See how it works
-              </Link>
-            </motion.div>
-            <div className="mt-10 flex items-center gap-6 text-xs text-white/50">
-              <div className="flex items-center gap-2"><span className="h-2 w-2 rounded-full bg-success" /> MoMo & Card</div>
-              <div className="flex items-center gap-2"><span className="h-2 w-2 rounded-full bg-primary" /> No download</div>
-              <div className="flex items-center gap-2"><span className="h-2 w-2 rounded-full bg-info" /> Live tracking</div>
-            </div>
-          </div>
-
+        <div className="container-page relative text-center">
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex flex-col items-center"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mx-auto flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider"
           >
-            <div
-              style={{
-                borderRadius: "48px",
-                padding: "10px",
-                background: "linear-gradient(145deg, #2a2a2a, #1a1a1a)",
-                boxShadow: "0 0 0 1px #333, 0 40px 80px rgba(0,0,0,0.6), inset 0 0 0 1px #444",
-              }}
+            <span className="grid h-6 w-6 place-items-center rounded-md bg-primary text-[11px] font-extrabold text-primary-foreground">T</span>
+            ThothAI Technologies
+          </motion.div>
+          <motion.h1
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.07 }}
+            className="mx-auto mt-6 max-w-4xl font-display text-5xl font-extrabold leading-[1.05] tracking-tight md:text-7xl"
+          >
+            Building the commerce layer for Africa{" "}
+            <span className="text-primary">on WhatsApp.</span>
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.12 }}
+            className="mx-auto mt-6 max-w-2xl text-lg text-white/65"
+          >
+            Two billion people use WhatsApp. In West Africa, it's already the operating system for daily life. We build the infrastructure that lets businesses sell — and people buy — without leaving it.
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.17 }}
+            className="mt-8 flex flex-wrap justify-center gap-3"
+          >
+            <Link
+              to="/contact"
+              search={{ role: undefined }}
+              className="inline-flex h-12 items-center gap-2 rounded-full bg-primary px-6 font-semibold text-primary-foreground shadow-[0_12px_40px_-12px_oklch(0.745_0.165_60/0.6)]"
             >
-              <iframe
-                ref={demoRef}
-                src="/demo/thothfood-demo.html"
-                title="ThothFood live demo"
-                style={{
-                  width: "390px",
-                  height: "780px",
-                  border: "none",
-                  display: "block",
-                  borderRadius: "40px",
-                }}
-                loading="lazy"
-              />
-            </div>
-            <div className="mt-4 flex justify-center">
-              <button
-                onClick={replayDemo}
-                className="flex items-center gap-1.5 rounded-full border border-white/20 bg-white/5 px-4 py-2 text-xs font-semibold text-white/60 backdrop-blur-sm transition-all hover:bg-white/10 hover:text-white"
-              >
-                <RotateCcw className="h-3 w-3" /> Replay demo
-              </button>
-            </div>
+              Get in touch <ArrowRight className="h-4 w-4" />
+            </Link>
+            <Link
+              to="/thothfood"
+              className="inline-flex h-12 items-center rounded-full border border-white/20 px-6 font-semibold text-white/80 hover:bg-white/5"
+            >
+              See ThothFood
+            </Link>
+            <Link
+              to="/about"
+              className="inline-flex h-12 items-center rounded-full border border-white/10 px-6 font-semibold text-white/55 hover:bg-white/5 hover:text-white/80"
+            >
+              Learn more about us
+            </Link>
           </motion.div>
         </div>
       </section>
 
-      {/* HOW IT WORKS */}
-      <section className="bg-background py-24">
-        <div className="container-page">
-          <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
-            <div className="max-w-xl">
-              <p className="text-sm font-semibold uppercase tracking-wider text-primary">How it works</p>
-              <h2 className="mt-3 font-display text-4xl font-extrabold tracking-tight md:text-5xl">
-                Three taps. One hot meal.
-              </h2>
-            </div>
-            <p className="max-w-md text-foreground/60">
-              No accounts. No downloads. No "please verify your email." Just open WhatsApp and start eating.
-            </p>
-          </div>
-
-          <div className="mt-14 grid gap-6 md:grid-cols-3">
-            {[
-              {
-                step: "01",
-                icon: MessageCircle,
-                title: "Message a restaurant",
-                desc: "Tap the WhatsApp link on your favourite spot. Say hi — that's it.",
-              },
-              {
-                step: "02",
-                icon: ShoppingBag,
-                title: "Browse & add to cart",
-                desc: "Scroll the full menu right in chat. Tap to add. Change your mind. Repeat.",
-              },
-              {
-                step: "03",
-                icon: Wallet,
-                title: "Pay with MoMo",
-                desc: "Checkout in seconds. Mobile Money or card. Order arrives at your door.",
-              },
-            ].map((s) => (
-              <div
-                key={s.step}
-                className="group relative overflow-hidden rounded-3xl border border-border bg-card p-7 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-[0_20px_40px_-20px_oklch(0.745_0.165_60/0.3)]"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="grid h-12 w-12 place-items-center rounded-xl bg-primary/10 text-primary">
-                    <s.icon className="h-5 w-5" />
-                  </span>
-                  <span className="font-display text-3xl font-extrabold text-foreground/10">{s.step}</span>
-                </div>
-                <h3 className="mt-5 font-display text-xl font-bold">{s.title}</h3>
-                <p className="mt-2 text-sm text-foreground/65">{s.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* NOW SERVING */}
-      <section className="border-y border-border bg-background py-16">
-        <div className="container-page">
-          <p className="text-center text-xs font-semibold uppercase tracking-widest text-foreground/40">
-            Now serving in Accra
-          </p>
-          <div className="mt-6 flex flex-wrap justify-center gap-3">
-            {featuredRestaurants.map((r) => (
-              <WhatsAppLink
-                key={r.name}
-                href={r.waUrl ?? WHATSAPP_ORDER_URL}
-                className="group flex items-center gap-3 rounded-2xl border border-border bg-card px-5 py-3.5 transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-[0_8px_24px_-8px_oklch(0.745_0.165_60/0.2)]"
-              >
-                <span className="text-2xl">{r.emoji}</span>
-                <div className="text-left">
-                  <p className="text-sm font-semibold group-hover:text-primary">{r.name}</p>
-                  <p className="text-xs text-foreground/50">{r.cuisine} · {r.area}</p>
-                </div>
-              </WhatsAppLink>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* WHY THOTHFOOD */}
-      <section className="bg-secondary py-24">
-        <div className="container-page">
-          <div className="mx-auto max-w-2xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-wider text-primary">Why ThothFood</p>
-            <h2 className="mt-3 font-display text-4xl font-extrabold tracking-tight md:text-5xl">
-              Built for how you actually order.
-            </h2>
-            <p className="mt-4 text-foreground/65">
-              You don't need another app cluttering your home screen. You need food. Fast. From the spots you already love.
-            </p>
-          </div>
-
-          <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              { icon: Smartphone, title: "Zero downloads", desc: "If you have WhatsApp, you're already set up. That's the whole tech stack." },
-              { icon: Wallet, title: "MoMo + card checkout", desc: "Paystack-powered. MTN, Telecel, AirtelTigo — all covered." },
-              { icon: MapPin, title: "Delivery or pickup", desc: "Get it brought to you, or swing by. Your call, every order." },
-              { icon: MessageCircle, title: "Live order tracking", desc: "Status updates land right in your chat. No refresh-the-app dance." },
-              { icon: Bot, title: "AI support that gets it", desc: "Ask 'where's my food?' and get a real answer, not a canned reply." },
-              { icon: Shield, title: "Dispute protection", desc: "Something off? Our resolution system has your back. Always." },
-            ].map((b) => (
-              <div key={b.title} className="rounded-2xl bg-background p-6 ring-1 ring-border">
-                <span className="grid h-11 w-11 place-items-center rounded-xl bg-primary text-primary-foreground">
-                  <b.icon className="h-5 w-5" />
-                </span>
-                <h3 className="mt-5 font-display text-lg font-bold">{b.title}</h3>
-                <p className="mt-1.5 text-sm text-foreground/65">{b.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* THOTHSHOP TEASER */}
+      {/* PRODUCTS */}
       <section className="bg-dark py-24 text-dark-foreground">
         <div className="container-page">
-          <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-dark-card p-10 md:p-16">
-            <div
-              aria-hidden
-              className="pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full bg-primary/20 blur-3xl"
-            />
-            <div className="relative grid gap-8 md:grid-cols-[1.4fr_1fr] md:items-center">
-              <div>
-                <span className="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary">
-                  <Sparkles className="h-3.5 w-3.5" /> Coming Soon
-                </span>
-                <h2 className="mt-5 font-display text-4xl font-extrabold leading-tight md:text-6xl">
-                  Food was just<br />the beginning.
-                </h2>
-                <p className="mt-5 max-w-lg text-lg text-white/65">
-                  Meet <span className="font-semibold text-white">ThothShop</span> — WhatsApp commerce for every small business in Ghana. Clothing, electronics, beauty, crafts. One chat. Anything you sell.
-                </p>
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="text-sm font-semibold uppercase tracking-wider text-primary">Product family</p>
+            <h2 className="mt-3 font-display text-4xl font-extrabold tracking-tight md:text-5xl">
+              One platform. Every category.
+            </h2>
+            <p className="mt-4 text-white/60">
+              We started with food because the ordering flow is universal and the pain is daily. ThothShop extends the same rails to every merchant type in Ghana.
+            </p>
+          </div>
+
+          <div className="mt-14 grid gap-6 md:grid-cols-2">
+            {products.map((p) => (
+              <div
+                key={p.name}
+                className="flex flex-col rounded-3xl border border-white/10 bg-dark-card p-8"
+              >
+                <div className="flex items-start justify-between">
+                  <span className="text-4xl">{p.icon}</span>
+                  {p.status === "live" ? (
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-success/15 px-3 py-1 text-xs font-semibold text-success">
+                      <span className="h-1.5 w-1.5 rounded-full bg-success" /> Live
+                    </span>
+                  ) : (
+                    <span className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-semibold text-white/60">
+                      <Sparkles className="h-3 w-3" /> Coming soon
+                    </span>
+                  )}
+                </div>
+                <h3 className="mt-5 font-display text-2xl font-extrabold">{p.name}</h3>
+                <p className="mt-1 font-display text-lg font-semibold text-primary">{p.tagline}</p>
+                <p className="mt-3 flex-1 text-sm text-white/60 leading-relaxed">{p.desc}</p>
                 <Link
-                  to="/contact"
-                  search={{ role: undefined }}
-                  className="mt-7 inline-flex h-12 items-center gap-2 rounded-full bg-white px-6 text-sm font-semibold text-dark hover:bg-primary hover:text-primary-foreground"
+                  to={p.href as any}
+                  className="mt-6 inline-flex h-11 w-fit items-center gap-2 rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground"
                 >
-                  Join the waitlist <ArrowRight className="h-4 w-4" />
+                  {p.cta} <ArrowRight className="h-3.5 w-3.5" />
                 </Link>
               </div>
-              <div className="grid grid-cols-2 gap-3 text-center">
-                {["👗 Fashion", "💄 Beauty", "📱 Electronics", "🎨 Crafts"].map((t) => (
-                  <div key={t} className="rounded-2xl border border-white/10 bg-white/5 py-6 font-display text-base font-bold">
-                    {t}
-                  </div>
-                ))}
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* MERCHANT BANNER */}
-      <section className="bg-background py-8">
+      {/* CONTACT */}
+      <section className="bg-dark pb-24 text-dark-foreground">
         <div className="container-page">
-          <div className="flex flex-col items-center justify-between gap-4 rounded-3xl border border-border bg-dark px-8 py-6 text-dark-foreground sm:flex-row">
-            <p className="font-display text-lg font-bold">
-              Own a restaurant? Get on ThothFood free.
+          <div className="mx-auto max-w-2xl rounded-3xl border border-white/10 bg-dark-card p-10 text-center md:p-16">
+            <p className="text-sm font-semibold uppercase tracking-wider text-primary">Get in touch</p>
+            <h2 className="mt-3 font-display text-4xl font-extrabold tracking-tight md:text-5xl">
+              Partner, invest, or just say hi.
+            </h2>
+            <p className="mx-auto mt-4 max-w-lg text-white/60">
+              Whether you're a restaurant ready to go live, an investor curious about WhatsApp commerce in Africa, or a developer who wants to build with us — we're easy to reach.
             </p>
-            <div className="flex items-center gap-3">
-              <a
-                href={SIGNUP_URL}
-                onClick={trackStartFree}
-                className="inline-flex h-10 items-center gap-2 rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground"
-              >
-                Start free <ArrowRight className="h-3.5 w-3.5" />
-              </a>
+            <div className="mt-8 flex flex-wrap justify-center gap-3">
               <Link
-                to="/pricing"
-                className="text-sm font-medium text-white/60 hover:text-white"
+                to="/contact"
+                search={{ role: undefined }}
+                className="inline-flex h-12 items-center gap-2 rounded-full bg-primary px-6 font-semibold text-primary-foreground"
               >
-                compare plans
+                <MessageCircle className="h-4 w-4" /> Contact us
               </Link>
+              <a
+                href={`mailto:${CONTACT_EMAIL}`}
+                className="inline-flex h-12 items-center gap-2 rounded-full border border-white/20 px-6 font-semibold text-white/80 hover:bg-white/5"
+              >
+                <Mail className="h-4 w-4" /> {CONTACT_EMAIL}
+              </a>
+            </div>
+            <div className="mt-8 flex items-center justify-center gap-2 text-sm text-white/40">
+              <MapPin className="h-3.5 w-3.5" /> Accra, Ghana
             </div>
           </div>
         </div>
       </section>
 
-      {/* FINAL CTA */}
-      <section className="bg-background py-24">
-        <div className="container-page text-center">
-          <h2 className="mx-auto max-w-3xl font-display text-5xl font-extrabold tracking-tight md:text-6xl">
-            Start ordering today.<br />
-            <span className="text-primary">Just open WhatsApp.</span>
-          </h2>
-          <p className="mx-auto mt-5 max-w-xl text-foreground/65">
-            Your favourite kitchens are one tap away. Lunch sorted in under a minute.
-          </p>
-          <WhatsAppLink className="mt-8 inline-flex h-14 items-center gap-2 rounded-full bg-primary px-8 text-base font-semibold text-primary-foreground shadow-[0_12px_40px_-12px_oklch(0.745_0.165_60/0.6)] transition-transform hover:-translate-y-0.5">
-            <MessageCircle className="h-5 w-5" /> Order on WhatsApp
-          </WhatsAppLink>
+      {/* THOTHFOOD CTA */}
+      <section className="bg-primary py-16 text-primary-foreground">
+        <div className="container-page flex flex-col items-center justify-between gap-6 text-center md:flex-row md:text-left">
+          <div>
+            <h2 className="font-display text-2xl font-extrabold tracking-tight md:text-4xl">
+              Ready to take orders on WhatsApp?
+            </h2>
+            <p className="mt-1 opacity-80">ThothFood is live now. Free to start.</p>
+          </div>
+          <a
+            href={SIGNUP_URL}
+            className="inline-flex h-12 items-center gap-2 rounded-full bg-dark px-7 font-semibold text-dark-foreground hover:bg-dark-card"
+          >
+            Start free <ArrowRight className="h-4 w-4" />
+          </a>
         </div>
       </section>
     </>

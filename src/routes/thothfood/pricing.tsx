@@ -9,7 +9,7 @@ import {
 import { SIGNUP_URL } from "@/lib/site";
 import { trackStartFree } from "@/lib/pixel";
 
-export const Route = createFileRoute("/pricing")({
+export const Route = createFileRoute("/thothfood/pricing")({
   head: () => ({
     meta: [
       { title: "Pricing — ThothFood" },

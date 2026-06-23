@@ -844,13 +844,15 @@ body{
 }
 .hint.show{opacity:1;}
 
-/* Embed mode — tighten body chrome, keep phone frame exactly as-is */
+/* Embed mode — tighten body chrome, shrink stage to phone-bezel size */
 body.embed{
   padding:0;
   gap:0;
 }
 body.embed .stage{
-  width:390px; /* explicit override so min(390,100vw-32px) doesn't shrink it */
+  width:280px;
+  height:580px;
+  aspect-ratio:unset;
 }
 body.embed .caption,
 body.embed .dots{display:none;}
@@ -1481,7 +1483,7 @@ Your food is being prepared 👨‍🍳
     [6000,  '7 · Kitchen accepted — your food is being prepared'],
   ];
 
-  let cur=0, timer;
+  let cur=0, timer, autoReplayTimer;
 
   // Embed mode — apply BEFORE size() so stage width is correct when slides are measured
   if(window !== window.top){
@@ -1518,6 +1520,7 @@ Your food is being prepared 👨‍🍳
     endCard.style.display='flex';void endCard.offsetWidth;endCard.classList.add('active');
     dotsEl.style.visibility='hidden';
     setCaption('');
+    autoReplayTimer=setTimeout(()=>jumpTo(0),4500);
   }
 
   function advance(){
@@ -1528,7 +1531,7 @@ Your food is being prepared 👨‍🍳
   function scheduleNext(){clearTimeout(timer);timer=setTimeout(advance,SCENES[cur]?.[0]||4000);}
 
   function jumpTo(n){
-    clearTimeout(timer);
+    clearTimeout(timer);clearTimeout(autoReplayTimer);
     endCard.style.display='none';endCard.classList.remove('active');
     dotsEl.style.visibility='visible';
     cur=Math.max(0,Math.min(n,slides.length-1));
