@@ -24,31 +24,25 @@ export const Route = createFileRoute("/thothfood/pricing")({
 });
 
 const freeFeatures = [
-  "Dedicated WhatsApp ordering line",
-  "Real-time kitchen dashboard",
-  "Menu management & in-chat catalogue",
+  "Sell on the shared Thoth WhatsApp number",
+  "Kitchen display & order management",
+  "Menu management",
   "MoMo & card payments via Paystack",
-  "Cash on delivery support",
+  "Cash-on-delivery wallet & payouts",
   "Delivery zones & rider management",
-  "Staff roles & permissions",
-  "Promotions engine",
-  "Merchant wallet & withdrawals",
   "Dispute resolution",
-  "Onboarding & ongoing support",
 ];
 
 const proExtras = [
-  "Your customers pay nothing extra at checkout",
-  "Use your existing WhatsApp number",
-  "Point-of-sale (POS) integration",
-  "Customer CRM & order history",
+  "Your own WhatsApp number",
+  "Customer CRM",
   "WhatsApp broadcasts",
+  "Promotions",
   "Staff management",
   "Metrics dashboard",
-  "Priority support",
 ];
 
-const maxExtras = [
+const maxFeatures = [
   "Everything in Pro",
   "Higher limits",
   "Advanced analytics",
@@ -56,29 +50,24 @@ const maxExtras = [
 ];
 
 const comparisonRows = [
-  { feature: "WhatsApp ordering line", free: true, pro: true },
-  { feature: "Kitchen dashboard", free: true, pro: true },
+  { feature: "Kitchen display & order management", free: true, pro: true },
   { feature: "Menu management", free: true, pro: true },
-  { feature: "MoMo & card payments", free: true, pro: true },
-  { feature: "Cash on delivery", free: true, pro: true },
-  { feature: "Delivery zones", free: true, pro: true },
-  { feature: "Promotions & analytics", free: true, pro: true },
-  { feature: "Merchant wallet & withdrawals", free: true, pro: true },
+  { feature: "MoMo & card payments via Paystack", free: true, pro: true },
+  { feature: "Cash-on-delivery wallet & payouts", free: true, pro: true },
+  { feature: "Delivery zones & rider management", free: true, pro: true },
   { feature: "Dispute resolution", free: true, pro: true },
-  { feature: "Zero checkout surcharge for customers", free: false, pro: true },
-  { feature: "Keep your existing WhatsApp number", free: false, pro: true },
-  { feature: "POS integration", free: false, pro: true },
+  { feature: "Your own WhatsApp number", free: false, pro: true },
   { feature: "Customer CRM", free: false, pro: true },
   { feature: "WhatsApp broadcasts", free: false, pro: true },
+  { feature: "Promotions", free: false, pro: true },
   { feature: "Staff management", free: false, pro: true },
   { feature: "Metrics dashboard", free: false, pro: true },
-  { feature: "Priority support", free: false, pro: true },
 ];
 
 const faqs = [
   {
     q: "What's included in the Free plan?",
-    a: "Everything you need to run a full WhatsApp ordering operation: a dedicated ordering line, kitchen dashboard, menu management, MoMo & card payments, delivery zones, staff roles, promotions, merchant wallet, and onboarding support. There's no time limit — it's free as long as you're on the platform.",
+    a: "Everything you need to start taking orders: kitchen display & order management, menu management, MoMo & card payments via Paystack, cash-on-delivery wallet & payouts, delivery zones & rider management, and dispute resolution. There's no time limit — it's free as long as you're on the platform.",
   },
   {
     q: "How long does onboarding take?",
@@ -86,11 +75,11 @@ const faqs = [
   },
   {
     q: "How and when do I get paid?",
-    a: "Your earnings land in your ThothFood merchant wallet after each order. You can request a withdrawal to your MoMo account at any time, on demand — no waiting for weekly settlements.",
+    a: "Your earnings are tracked per order and you can request a withdrawal to your MoMo account at any time, on demand — no waiting for weekly settlements.",
   },
   {
     q: "Can I use my existing WhatsApp number?",
-    a: "Yes — that's a Pro feature. On the Free plan, we provision you a dedicated ordering line so you can be live immediately. Pro lets you port your existing WhatsApp Business number, so your current customer conversations stay right where they are.",
+    a: "Yes — that's a Pro feature. On the Free plan, you sell on the shared Thoth WhatsApp number and get discovered immediately. Pro gives you your own dedicated WhatsApp Business number, so all ordering conversations flow through your brand.",
   },
   {
     q: "Can I switch plans later?",
@@ -141,28 +130,28 @@ function Pricing() {
       {/* Plan cards */}
       <section className="bg-secondary py-16 md:py-24">
         <div className="container-page">
-          <div className="grid gap-6 md:grid-cols-2 md:items-start">
+          <div className="grid gap-6 md:grid-cols-3 md:items-start">
 
             {/* Free card */}
             <div className="flex flex-col overflow-hidden rounded-3xl border border-border bg-background shadow-sm">
-              <div className="p-8 md:p-10">
+              <div className="p-6 md:p-8">
                 <p className="font-display text-sm font-bold uppercase tracking-wider text-foreground/50">Free</p>
                 <div className="mt-3 flex items-end gap-2">
                   <span className="font-display text-5xl font-extrabold tracking-tight">₵0</span>
                   <span className="mb-1 text-sm text-foreground/50">, forever</span>
                 </div>
-                <p className="mt-3 text-foreground/65">
-                  Everything you need to take orders on WhatsApp.
+                <p className="mt-3 text-sm text-foreground/65">
+                  Get discovered on the central Choppa number.
                 </p>
                 <a
                   href={`${SIGNUP_URL}?plan=FREE`}
-                  className="mt-6 inline-flex h-12 w-full items-center justify-center gap-2 rounded-full border border-border bg-background font-semibold text-foreground transition-colors hover:bg-muted"
+                  className="mt-6 inline-flex h-11 w-full items-center justify-center gap-2 rounded-full border border-border bg-background font-semibold text-foreground transition-colors hover:bg-muted"
                   onClick={trackStartFree}
                 >
                   Start free <ArrowRight className="h-4 w-4" />
                 </a>
               </div>
-              <div className="border-t border-border px-8 py-6 md:px-10">
+              <div className="border-t border-border px-6 py-6 md:px-8">
                 <p className="text-xs font-semibold uppercase tracking-wider text-foreground/40">What's included</p>
                 <ul className="mt-4 space-y-3">
                   {freeFeatures.map((f) => (
@@ -177,7 +166,7 @@ function Pricing() {
 
             {/* Pro card */}
             <div className="flex flex-col overflow-hidden rounded-3xl bg-dark text-dark-foreground shadow-[0_30px_80px_-30px_oklch(0.18_0.005_50/0.35)]">
-              <div className="p-8 md:p-10">
+              <div className="p-6 md:p-8">
                 <div className="flex items-center justify-between">
                   <p className="font-display text-sm font-bold uppercase tracking-wider text-primary">Pro</p>
                   <span className="rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
@@ -189,17 +178,17 @@ function Pricing() {
                   <span className="mb-1 text-sm text-white/50">/month</span>
                 </div>
                 <p className="mt-1 text-xs text-white/50">14-day free trial</p>
-                <p className="mt-3 text-white/65">
+                <p className="mt-3 text-sm text-white/65">
                   Everything in Free, plus the tools to take your kitchen further.
                 </p>
                 <a
                   href={`${SIGNUP_URL}?plan=PRO`}
-                  className="mt-6 inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-primary font-semibold text-primary-foreground shadow-[0_8px_24px_-8px_oklch(0.745_0.165_60/0.6)] transition-transform hover:-translate-y-0.5"
+                  className="mt-6 inline-flex h-11 w-full items-center justify-center gap-2 rounded-full bg-primary font-semibold text-primary-foreground shadow-[0_8px_24px_-8px_oklch(0.745_0.165_60/0.6)] transition-transform hover:-translate-y-0.5"
                 >
                   Start 14-day free trial <ArrowRight className="h-4 w-4" />
                 </a>
               </div>
-              <div className="border-t border-white/10 px-8 py-6 md:px-10">
+              <div className="border-t border-white/10 px-6 py-6 md:px-8">
                 <p className="text-xs font-semibold uppercase tracking-wider text-white/40">Everything in Free, plus:</p>
                 <ul className="mt-4 space-y-3">
                   {proExtras.map((f) => (
@@ -211,42 +200,43 @@ function Pricing() {
                 </ul>
               </div>
             </div>
-          </div>
 
-          {/* Max card */}
-          <div className="mt-6 flex flex-col overflow-hidden rounded-3xl border border-primary/20 bg-dark text-dark-foreground md:flex-row md:items-stretch">
-            <div className="flex-1 p-8 md:p-10">
-              <div className="flex items-center gap-3">
-                <p className="font-display text-sm font-bold uppercase tracking-wider text-primary">Max</p>
-                <span className="rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
-                  For high-volume kitchens
-                </span>
+            {/* Max card */}
+            <div className="flex flex-col overflow-hidden rounded-3xl border border-white/15 bg-dark text-dark-foreground">
+              <div className="p-6 md:p-8">
+                <div className="flex items-center justify-between">
+                  <p className="font-display text-sm font-bold uppercase tracking-wider text-white/40">Max</p>
+                  <span className="rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-semibold text-white/50">
+                    Coming soon
+                  </span>
+                </div>
+                <div className="mt-3">
+                  <span className="font-display text-4xl font-extrabold tracking-tight text-white/60">Custom</span>
+                </div>
+                <p className="mt-3 text-sm text-white/40">
+                  Everything in Pro, plus advanced tools for high-volume kitchens.
+                </p>
+                <Link
+                  to="/contact"
+                  search={{ role: "restaurant" }}
+                  className="mt-6 inline-flex h-11 w-full items-center justify-center gap-2 rounded-full border border-white/20 font-semibold text-white/60 transition-colors hover:bg-white/5"
+                >
+                  Talk to us <ArrowRight className="h-4 w-4" />
+                </Link>
               </div>
-              <div className="mt-3">
-                <span className="font-display text-4xl font-extrabold tracking-tight">Custom</span>
+              <div className="border-t border-white/10 px-6 py-6 md:px-8">
+                <p className="text-xs font-semibold uppercase tracking-wider text-white/30">Everything in Pro, plus:</p>
+                <ul className="mt-4 space-y-3 opacity-50">
+                  {maxFeatures.map((f) => (
+                    <li key={f} className="flex items-start gap-3">
+                      <Tick />
+                      <span className="text-sm">{f}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <p className="mt-3 text-white/65">
-                Everything in Pro, plus advanced tools for high-volume kitchens.
-              </p>
-              <Link
-                to="/contact"
-                search={{ role: "restaurant" }}
-                className="mt-6 inline-flex h-12 items-center gap-2 rounded-full bg-primary px-6 font-semibold text-primary-foreground shadow-[0_8px_24px_-8px_oklch(0.745_0.165_60/0.6)] transition-transform hover:-translate-y-0.5"
-              >
-                Talk to us <ArrowRight className="h-4 w-4" />
-              </Link>
             </div>
-            <div className="border-t border-white/10 px-8 py-6 md:border-t-0 md:border-l md:px-10 md:py-10">
-              <p className="text-xs font-semibold uppercase tracking-wider text-white/40">Everything in Pro, plus:</p>
-              <ul className="mt-4 space-y-3">
-                {maxExtras.map((f) => (
-                  <li key={f} className="flex items-start gap-3">
-                    <Tick />
-                    <span className="text-sm">{f}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+
           </div>
         </div>
       </section>
