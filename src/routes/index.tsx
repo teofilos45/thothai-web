@@ -52,6 +52,15 @@ function Home() {
         />
         <div
           aria-hidden
+          className="pointer-events-none absolute inset-0 opacity-10 mix-blend-overlay"
+          style={{
+            backgroundImage: "url('/images/hero-bg-graphic.svg')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        />
+        <div
+          aria-hidden
           className="pointer-events-none absolute inset-0 opacity-20"
           style={{
             backgroundImage: "url('/images/hero-bg-photo.jpg')",
@@ -65,8 +74,7 @@ function Home() {
             animate={{ opacity: 1, y: 0 }}
             className="mx-auto flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider"
           >
-            <span className="grid h-6 w-6 place-items-center rounded-md bg-primary text-[11px] font-extrabold text-primary-foreground">T</span>
-            ThothAI Technologies
+            🇬🇭 Live in Accra, Ghana
           </motion.div>
           <motion.h1
             initial={{ opacity: 0, y: 16 }}
@@ -83,7 +91,7 @@ function Home() {
             transition={{ delay: 0.12 }}
             className="mx-auto mt-6 max-w-2xl text-lg text-white/65"
           >
-            Two billion people use WhatsApp. In West Africa, it's already the operating system for daily life. We build the infrastructure that lets businesses sell — and people buy — without leaving it.
+            We build WhatsApp-native commerce infrastructure for Africa — starting with food, expanding to everything you can sell.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -92,23 +100,16 @@ function Home() {
             className="mt-8 flex flex-wrap justify-center gap-3"
           >
             <Link
-              to="/contact"
-              search={{ role: undefined }}
+              to="/thothfood"
               className="inline-flex h-12 items-center gap-2 rounded-full bg-primary px-6 font-semibold text-primary-foreground shadow-[0_12px_40px_-12px_oklch(0.745_0.165_60/0.6)]"
             >
-              Get in touch <ArrowRight className="h-4 w-4" />
-            </Link>
-            <Link
-              to="/thothfood"
-              className="inline-flex h-12 items-center rounded-full border border-white/20 px-6 font-semibold text-white/80 hover:bg-white/5"
-            >
-              See ThothFood
+              See ThothFood <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
               to="/about"
-              className="inline-flex h-12 items-center rounded-full border border-white/10 px-6 font-semibold text-white/55 hover:bg-white/5 hover:text-white/80"
+              className="inline-flex h-12 items-center rounded-full border border-white/20 px-6 font-semibold text-white/80 hover:bg-white/5"
             >
-              Learn more about us
+              Learn More
             </Link>
           </motion.div>
         </div>

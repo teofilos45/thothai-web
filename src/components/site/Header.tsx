@@ -1,9 +1,10 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useState } from "react";
-import { Menu, X, MessageCircle } from "lucide-react";
+import { Menu, X, MessageCircle, ChevronDown } from "lucide-react";
 import { LOGIN_URL } from "@/lib/site";
 import { WhatsAppLink } from "@/components/site/WhatsAppLink";
 import { ThothAILogo } from "@/components/site/ThothAILogo";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 
 const thothFoodLinks = [
   { to: "/thothfood/how-it-works", label: "How it works" },
@@ -48,16 +49,52 @@ export function Header() {
         )}
 
         <nav className="hidden items-center gap-8 md:flex">
-          {links.map((l) => (
-            <Link
-              key={l.to}
-              to={l.to}
-              className="text-sm font-medium text-foreground/70 transition-colors hover:text-foreground"
-              activeProps={{ className: "text-foreground" }}
-            >
-              {l.label}
-            </Link>
-          ))}
+          {links.map((l) => {
+            if (!isThothFood && l.to === "/products") {
+              return (
+                <div key={l.to} className="flex items-center gap-0.5">
+                  <Link
+                    to="/products"
+                    className="relative text-sm font-medium text-foreground/70 transition-colors hover:text-foreground"
+                    activeProps={{ className: "text-foreground after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-full after:rounded-full after:bg-primary" }}
+                  >
+                    Our Products
+                  </Link>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <button className="ml-0.5 text-foreground/50 transition-colors hover:text-foreground" aria-label="Products menu">
+                        <ChevronDown className="h-3.5 w-3.5" />
+                      </button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent className="w-56 rounded-2xl border border-border bg-card p-2" align="start">
+                      <DropdownMenuItem asChild>
+                        <Link to="/thothfood" className="flex cursor-pointer flex-col gap-0.5 rounded-xl px-3 py-2.5">
+                          <span className="text-sm font-semibold">ThothFood</span>
+                          <span className="text-xs text-muted-foreground">Order food on WhatsApp</span>
+                        </Link>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem asChild>
+                        <Link to="/thothshop" className="flex cursor-pointer flex-col gap-0.5 rounded-xl px-3 py-2.5">
+                          <span className="text-sm font-semibold">ThothShop</span>
+                          <span className="text-xs text-muted-foreground">Sell anything on WhatsApp</span>
+                        </Link>
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </div>
+              );
+            }
+            return (
+              <Link
+                key={l.to}
+                to={l.to}
+                className="relative text-sm font-medium text-foreground/70 transition-colors hover:text-foreground"
+                activeProps={{ className: "text-foreground after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-full after:rounded-full after:bg-primary" }}
+              >
+                {l.label}
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="hidden items-center gap-2 md:flex">

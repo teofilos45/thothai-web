@@ -13,7 +13,7 @@ export const API_URL = import.meta.env.VITE_API_URL ?? APP_URL;
 // TODO: replace after Meta central-number verification
 export const WHATSAPP_ORDER_URL = "https://wa.me/233000000000";
 
-export const CONTACT_EMAIL = "contact@thothai.com";
+export const CONTACT_EMAIL = "aithoth6@gmail.com";
 
 export const SOCIAL_URLS = {
   instagram: "#",
