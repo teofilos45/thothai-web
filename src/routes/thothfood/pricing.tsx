@@ -42,6 +42,16 @@ const proExtras = [
   "Use your existing WhatsApp number",
   "Point-of-sale (POS) integration",
   "Customer CRM & order history",
+  "WhatsApp broadcasts",
+  "Staff management",
+  "Metrics dashboard",
+  "Priority support",
+];
+
+const maxExtras = [
+  "Everything in Pro",
+  "Higher limits",
+  "Advanced analytics",
   "Priority support",
 ];
 
@@ -59,6 +69,9 @@ const comparisonRows = [
   { feature: "Keep your existing WhatsApp number", free: false, pro: true },
   { feature: "POS integration", free: false, pro: true },
   { feature: "Customer CRM", free: false, pro: true },
+  { feature: "WhatsApp broadcasts", free: false, pro: true },
+  { feature: "Staff management", free: false, pro: true },
+  { feature: "Metrics dashboard", free: false, pro: true },
   { feature: "Priority support", free: false, pro: true },
 ];
 
@@ -142,7 +155,7 @@ function Pricing() {
                   Everything you need to take orders on WhatsApp.
                 </p>
                 <a
-                  href={SIGNUP_URL}
+                  href={`${SIGNUP_URL}?plan=FREE`}
                   className="mt-6 inline-flex h-12 w-full items-center justify-center gap-2 rounded-full border border-border bg-background font-semibold text-foreground transition-colors hover:bg-muted"
                   onClick={trackStartFree}
                 >
@@ -171,19 +184,20 @@ function Pricing() {
                     For growing kitchens
                   </span>
                 </div>
-                <div className="mt-3">
-                  <span className="font-display text-4xl font-extrabold tracking-tight">Talk to us</span>
+                <div className="mt-3 flex items-end gap-2">
+                  <span className="font-display text-4xl font-extrabold tracking-tight">GHS 199</span>
+                  <span className="mb-1 text-sm text-white/50">/month</span>
                 </div>
+                <p className="mt-1 text-xs text-white/50">14-day free trial</p>
                 <p className="mt-3 text-white/65">
                   Everything in Free, plus the tools to take your kitchen further.
                 </p>
-                <Link
-                  to="/contact"
-                  search={{ role: "restaurant" }}
+                <a
+                  href={`${SIGNUP_URL}?plan=PRO`}
                   className="mt-6 inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-primary font-semibold text-primary-foreground shadow-[0_8px_24px_-8px_oklch(0.745_0.165_60/0.6)] transition-transform hover:-translate-y-0.5"
                 >
-                  Talk to us <ArrowRight className="h-4 w-4" />
-                </Link>
+                  Start 14-day free trial <ArrowRight className="h-4 w-4" />
+                </a>
               </div>
               <div className="border-t border-white/10 px-8 py-6 md:px-10">
                 <p className="text-xs font-semibold uppercase tracking-wider text-white/40">Everything in Free, plus:</p>
@@ -196,6 +210,42 @@ function Pricing() {
                   ))}
                 </ul>
               </div>
+            </div>
+          </div>
+
+          {/* Max card */}
+          <div className="mt-6 flex flex-col overflow-hidden rounded-3xl border border-primary/20 bg-dark text-dark-foreground md:flex-row md:items-stretch">
+            <div className="flex-1 p-8 md:p-10">
+              <div className="flex items-center gap-3">
+                <p className="font-display text-sm font-bold uppercase tracking-wider text-primary">Max</p>
+                <span className="rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
+                  For high-volume kitchens
+                </span>
+              </div>
+              <div className="mt-3">
+                <span className="font-display text-4xl font-extrabold tracking-tight">Custom</span>
+              </div>
+              <p className="mt-3 text-white/65">
+                Everything in Pro, plus advanced tools for high-volume kitchens.
+              </p>
+              <Link
+                to="/contact"
+                search={{ role: "restaurant" }}
+                className="mt-6 inline-flex h-12 items-center gap-2 rounded-full bg-primary px-6 font-semibold text-primary-foreground shadow-[0_8px_24px_-8px_oklch(0.745_0.165_60/0.6)] transition-transform hover:-translate-y-0.5"
+              >
+                Talk to us <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+            <div className="border-t border-white/10 px-8 py-6 md:border-t-0 md:border-l md:px-10 md:py-10">
+              <p className="text-xs font-semibold uppercase tracking-wider text-white/40">Everything in Pro, plus:</p>
+              <ul className="mt-4 space-y-3">
+                {maxExtras.map((f) => (
+                  <li key={f} className="flex items-start gap-3">
+                    <Tick />
+                    <span className="text-sm">{f}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
