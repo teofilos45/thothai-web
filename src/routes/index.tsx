@@ -50,6 +50,15 @@ function Home() {
               "radial-gradient(60% 50% at 70% 0%, oklch(0.745 0.165 60 / 0.4) 0%, transparent 70%), radial-gradient(40% 40% at 20% 100%, oklch(0.72 0.18 145 / 0.15) 0%, transparent 70%)",
           }}
         />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 opacity-20"
+          style={{
+            backgroundImage: "url('/images/hero-bg-photo.jpg')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        />
         <div className="container-page relative text-center">
           <motion.div
             initial={{ opacity: 0, y: 12 }}

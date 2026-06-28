@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Instagram, Twitter, Facebook, Sparkles } from "lucide-react";
 import { SIGNUP_URL, LOGIN_URL, CONTACT_EMAIL, SOCIAL_URLS } from "@/lib/site";
 import { trackStartFree } from "@/lib/pixel";
+import { ThothAILogo } from "@/components/site/ThothAILogo";
 
 export function Footer() {
   return (
@@ -32,11 +33,8 @@ export function Footer() {
 
         <div className="grid gap-10 md:grid-cols-4">
           <div className="md:col-span-2">
-            <Link to="/" className="flex items-center gap-2 font-display text-2xl font-extrabold">
-              <span className="grid h-9 w-9 place-items-center rounded-lg bg-primary text-primary-foreground text-base font-black">
-                T
-              </span>
-              ThothAI<span className="text-primary">Technologies</span>
+            <Link to="/">
+              <ThothAILogo size="md" />
             </Link>
             <p className="mt-4 max-w-sm text-sm text-white/55">
               Building the commerce layer for Africa on WhatsApp. Food, fashion, everything — one chat away.

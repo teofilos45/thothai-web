@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Menu, X, MessageCircle } from "lucide-react";
 import { LOGIN_URL } from "@/lib/site";
 import { WhatsAppLink } from "@/components/site/WhatsAppLink";
+import { ThothAILogo } from "@/components/site/ThothAILogo";
 
 const thothFoodLinks = [
   { to: "/thothfood/how-it-works", label: "How it works" },
@@ -41,11 +42,8 @@ export function Header() {
             </Link>
           </div>
         ) : (
-          <Link to="/" className="flex items-center gap-2 font-display text-xl font-extrabold tracking-tight">
-            <span className="grid h-8 w-8 place-items-center rounded-lg bg-primary text-primary-foreground text-sm font-black">
-              T
-            </span>
-            ThothAI <span className="text-primary">Technologies</span>
+          <Link to="/">
+            <ThothAILogo size="md" />
           </Link>
         )}
 

@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, MessageCircle, Users, Target, Zap, Mail, MapPin } from "lucide-react";
+import { MessageCircle, Users, Target, Zap, Mail, MapPin } from "lucide-react";
 import { CONTACT_EMAIL } from "@/lib/site";
 
 export const Route = createFileRoute("/about")({
@@ -36,19 +36,13 @@ const values = [
 function About() {
   return (
     <>
-      {/* HERO */}
-      <section className="bg-dark py-20 text-dark-foreground md:py-28">
+      {/* PAGE HEADER */}
+      <section className="bg-background pt-32 pb-12 md:pt-40">
         <div className="container-page text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider">
-            About Us
-          </span>
-          <h1 className="mx-auto mt-5 max-w-3xl font-display text-5xl font-extrabold leading-[1.05] tracking-tight md:text-6xl">
-            Building the commerce layer for Africa{" "}
-            <span className="text-primary">on WhatsApp.</span>
+          <p className="text-sm font-semibold uppercase tracking-wider text-primary">About us</p>
+          <h1 className="mx-auto mt-3 max-w-3xl font-display text-4xl font-extrabold tracking-tight md:text-5xl">
+            Building the commerce layer for Africa, on WhatsApp.
           </h1>
-          <p className="mx-auto mt-5 max-w-2xl text-lg text-white/65">
-            Two billion people use WhatsApp. In West Africa, it's already the operating system for daily life. We build the infrastructure that lets businesses sell — and people buy — without leaving it.
-          </p>
         </div>
       </section>
 
