@@ -23,7 +23,7 @@ const products = [
     desc: "WhatsApp-native food ordering for restaurants in Ghana. Customers browse the menu, pay with MoMo or card, and track their order — all inside the WhatsApp chat they already use. Restaurants manage it all from a real-time kitchen dashboard.",
     href: "/thothfood",
     cta: "Order now",
-    icon: "🍲",
+    image: "https://images.unsplash.com/photo-1664993101841-036f189719b6?w=720&h=360&fit=crop&q=80",
   },
   {
     name: "ThothShop",
@@ -32,7 +32,7 @@ const products = [
     desc: "WhatsApp commerce for every small business in Ghana. Clothing, electronics, beauty, crafts — same infrastructure as Thoth, extended to every merchant category.",
     href: "/thothshop",
     cta: "Join waitlist",
-    icon: "🛍️",
+    image: "https://images.unsplash.com/photo-1542838132-92c53300491e?w=720&h=360&fit=crop&q=80",
   },
 ];
 
@@ -59,32 +59,43 @@ function Products() {
             {products.map((p) => (
               <div
                 key={p.name}
-                className="flex flex-col rounded-3xl border border-white/10 bg-dark-card p-8"
+                className="flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-dark-card"
               >
-                <div className="flex items-start justify-between">
-                  <span className="text-4xl">{p.icon}</span>
-                  {p.status === "live" ? (
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-success/15 px-3 py-1 text-xs font-semibold text-success">
-                      <span className="h-1.5 w-1.5 rounded-full bg-success" /> Live
-                    </span>
-                  ) : (
-                    <span className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-semibold text-white/60">
-                      <Sparkles className="h-3 w-3" /> Coming soon
-                    </span>
-                  )}
+                {/* Image banner */}
+                <div className="relative h-48 overflow-hidden">
+                  <img
+                    src={p.image}
+                    alt={p.name}
+                    className="h-full w-full object-cover"
+                  />
+                  {p.status !== "live" && <div className="absolute inset-0 bg-dark/55" />}
+                  <div className="absolute right-4 top-4">
+                    {p.status === "live" ? (
+                      <span className="inline-flex items-center gap-1.5 rounded-full bg-success/20 px-3 py-1 text-xs font-semibold text-success backdrop-blur-sm">
+                        <span className="h-1.5 w-1.5 rounded-full bg-success" /> Live
+                      </span>
+                    ) : (
+                      <span className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-dark/60 px-3 py-1 text-xs font-semibold text-white/70 backdrop-blur-sm">
+                        <Sparkles className="h-3 w-3" /> Coming soon
+                      </span>
+                    )}
+                  </div>
                 </div>
-                <h2 className="mt-5 flex items-center gap-2 font-display text-2xl font-extrabold">
-                  {p.name}
-                  {p.name === "Thoth" && <IOIIcon className="h-5 w-5 flex-shrink-0 text-primary" />}
-                </h2>
-                <p className="mt-1 font-display text-lg font-semibold text-primary">{p.tagline}</p>
-                <p className="mt-3 flex-1 text-sm text-white/60 leading-relaxed">{p.desc}</p>
-                <Link
-                  to={p.href as any}
-                  className="mt-6 inline-flex h-11 w-fit items-center gap-2 rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground"
-                >
-                  {p.cta} <ArrowRight className="h-3.5 w-3.5" />
-                </Link>
+                {/* Content */}
+                <div className="flex flex-1 flex-col p-8">
+                  <h2 className="flex items-center gap-2 font-display text-2xl font-extrabold">
+                    {p.name}
+                    {p.name === "Thoth" && <IOIIcon className="h-5 w-5 flex-shrink-0 text-primary" />}
+                  </h2>
+                  <p className="mt-1 font-display text-lg font-semibold text-primary">{p.tagline}</p>
+                  <p className="mt-3 flex-1 text-sm text-white/60 leading-relaxed">{p.desc}</p>
+                  <Link
+                    to={p.href as any}
+                    className="mt-6 inline-flex h-11 w-fit items-center gap-2 rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground"
+                  >
+                    {p.cta} <ArrowRight className="h-3.5 w-3.5" />
+                  </Link>
+                </div>
               </div>
             ))}
           </div>
