@@ -96,6 +96,46 @@ function About() {
         </div>
       </section>
 
+      {/* VISION */}
+      <section className="bg-dark py-24 text-dark-foreground">
+        <div className="container-page">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="text-sm font-semibold uppercase tracking-wider text-primary">Our vision</p>
+            <h2 className="mt-4 font-display text-4xl font-extrabold leading-tight tracking-tight md:text-6xl">
+              Every African merchant.<br />
+              <span className="text-primary">One conversation away.</span>
+            </h2>
+            <p className="mx-auto mt-6 max-w-2xl text-lg text-white/65">
+              Africa is adding tens of millions of new internet users every year — nearly all arriving mobile-first, on WhatsApp before they're on any other platform. The commerce infrastructure they deserve shouldn't require an app store, a bank card, or a broadband connection.
+            </p>
+            <p className="mx-auto mt-4 max-w-2xl text-lg text-white/65">
+              We're building the commerce operating system for Africa — the layer that connects merchants to customers, payments to orders, and conversations to revenue across every category, every language, and every market on the continent. We started in Ghana because the problem is sharpest here. We're not stopping here.
+            </p>
+          </div>
+          <div className="mt-14 grid gap-5 md:grid-cols-3">
+            {[
+              {
+                heading: "Mobile-first by default",
+                body: "Most Africans experience the internet on a phone, on WhatsApp, before any other platform. We don't adapt for that — we build for it from day one.",
+              },
+              {
+                heading: "Every category",
+                body: "Food was our proof of concept. The same rails — payments, catalogue, fulfilment — extend to fashion, groceries, electronics, and anything else people sell.",
+              },
+              {
+                heading: "Starting in Ghana",
+                body: "We go deep before we go wide. Accra first, then the rest of Ghana, then West Africa, then the continent.",
+              },
+            ].map((c) => (
+              <div key={c.heading} className="rounded-2xl border border-white/10 bg-dark-card p-7">
+                <h3 className="font-display text-lg font-bold">{c.heading}</h3>
+                <p className="mt-2 text-sm text-white/60 leading-relaxed">{c.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* VALUES */}
       <section className="bg-secondary py-24">
         <div className="container-page">
