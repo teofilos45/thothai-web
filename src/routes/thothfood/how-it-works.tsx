@@ -172,7 +172,7 @@ function HowItWorks() {
           <h1 className="mx-auto mt-5 max-w-3xl font-display text-5xl font-extrabold tracking-tight md:text-7xl">
             From tap to <span className="text-primary">table.</span>
           </h1>
-          <p className="mx-auto mt-5 max-w-2xl text-lg text-white/65">
+          <p className="mx-auto mt-5 max-w-2xl body-text text-white/65">
             The full Thoth journey, step by step. Every step happens right inside WhatsApp.
           </p>
         </div>
@@ -197,7 +197,7 @@ function HowItWorks() {
                 <h2 className="mt-5 font-display text-4xl font-extrabold tracking-tight md:text-5xl">
                   {s.title}
                 </h2>
-                <p className="mt-4 max-w-md text-lg text-foreground/65">{s.desc}</p>
+                <p className="mt-4 max-w-md body-text text-foreground/65">{s.desc}</p>
               </div>
               <div>
                 {"catalogue" in s ? (

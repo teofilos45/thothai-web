@@ -846,8 +846,8 @@ body{
 
 /* Embed mode — tighten body chrome, shrink stage to phone-bezel size */
 body.embed{
-  padding:0;
-  gap:0;
+  padding:0 0 6px;
+  gap:8px;
 }
 body.embed .stage{
   width:280px;
@@ -943,7 +943,7 @@ body.embed .dots{display:none;}
       <div class="s1-center">
         <div class="s1-logo-wrap">
           <div class="s1-eye">T</div>
-          <div class="s1-brand">Thoth<span>Food</span></div>
+          <div class="s1-brand" style="display:flex;align-items:center;gap:7px;">Thoth<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="26" height="26" style="color:var(--brand-primary);flex-shrink:0;" aria-hidden="true"><line x1="3.5" y1="2" x2="3.5" y2="7" stroke-width="1.4"/><line x1="5.5" y1="2" x2="5.5" y2="7" stroke-width="1.4"/><path d="M3.5 7 Q4.5 9 5.5 7" fill="none" stroke-width="1.2"/><line x1="4.5" y1="8.5" x2="4.5" y2="18" stroke-width="1.4"/><circle cx="10" cy="10.5" r="3.5" stroke-width="1.5"/><path d="M15 2 L17 6 L15 8 V18" stroke-width="1.4"/></svg></div>
         </div>
         <div class="s1-sub">WhatsApp ordering, end-to-end<br>for restaurants in Ghana</div>
         <div class="s1-rest-pill">
@@ -952,7 +952,7 @@ body.embed .dots{display:none;}
           <span class="s1-rest-loc">· Tf Hostel, UG</span>
         </div>
       </div>
-      <div class="s1-website">thothfood.com</div>
+      <div class="s1-website">thothaigh.com</div>
     </div>
 
     <!-- ════════════════ S2 · OPEN CHAT + TAP CATALOGUE ════════════════ -->
@@ -1423,12 +1423,12 @@ Your food is being prepared 👨‍🍳
   <div class="end-card" id="endCard">
     <div class="end-logo">
       <div class="end-logo-mark">T</div>
-      <div class="end-logo-text">Thoth<span>Food</span></div>
+      <div class="end-logo-text" style="display:flex;align-items:center;gap:8px;">Thoth<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="22" height="22" style="color:var(--brand-primary);flex-shrink:0;" aria-hidden="true"><line x1="3.5" y1="2" x2="3.5" y2="7" stroke-width="1.4"/><line x1="5.5" y1="2" x2="5.5" y2="7" stroke-width="1.4"/><path d="M3.5 7 Q4.5 9 5.5 7" fill="none" stroke-width="1.2"/><line x1="4.5" y1="8.5" x2="4.5" y2="18" stroke-width="1.4"/><circle cx="10" cy="10.5" r="3.5" stroke-width="1.5"/><path d="M15 2 L17 6 L15 8 V18" stroke-width="1.4"/></svg></div>
     </div>
     <div class="end-hl">From WhatsApp message<br>to kitchen screen.</div>
     <div class="end-sub">Order your favourite meals straight from WhatsApp — no app needed.</div>
     <div class="end-cta-bold">PLACE YOUR ORDER NOW</div>
-    <div style="font-size:9px;color:rgba(255,255,255,.3);letter-spacing:.8px;text-transform:uppercase;margin-top:4px;">Powered by ThothAI Technologies</div>
+    <div style="font-size:9px;color:rgba(255,255,255,.3);letter-spacing:.8px;text-transform:uppercase;margin-top:4px;">Powered by Thoth Technologies</div>
   </div>
 
   <!-- Caption strip inside stage -->
@@ -1473,7 +1473,7 @@ Your food is being prepared 👨‍🍳
 
   // [duration, caption]
   const SCENES = [
-    [4000,  'ThothFood · Restaurant ordering on WhatsApp'],
+    [4000,  'Thoth · Restaurant ordering on WhatsApp'],
     [6500,  '1 · Customer opens the chat and taps the catalogue icon'],
     [8000,  '2 · They browse the menu and add items'],
     [27000, '3 · Cart, address, and order summary — all in WhatsApp'],
@@ -1514,6 +1514,9 @@ Your food is being prepared 👨‍🍳
     Array.from(dotsEl.children).forEach((d,i)=>d.classList.toggle('active',i===cur));
     slides.forEach((s,i)=>{if(i===cur){void s.offsetWidth;s.classList.add('active');}else s.classList.remove('active');});
     setCaption(SCENES[cur]?.[1]);
+    if(window.parent!==window){
+      window.parent.postMessage({type:'thothai-demo-slide',cur:cur,total:slides.length},'*');
+    }
   }
 
   function showEnd(){
@@ -1521,6 +1524,9 @@ Your food is being prepared 👨‍🍳
     dotsEl.style.visibility='hidden';
     setCaption('');
     autoReplayTimer=setTimeout(()=>jumpTo(0),4500);
+    if(window.parent!==window){
+      window.parent.postMessage({type:'thothai-demo-end'},'*');
+    }
   }
 
   function advance(){
@@ -1861,6 +1867,11 @@ Your food is being prepared 👨‍🍳
     const el=document.getElementById('kds-time');
     if(el)el.textContent=`${hh}:${mm}`;
   },10000);
+
+  // Listen for jump commands from parent page
+  window.addEventListener('message',function(e){
+    if(e.data&&e.data.type==='thothai-demo-jump') jumpTo(e.data.n);
+  });
 
   // Boot
   render(true);

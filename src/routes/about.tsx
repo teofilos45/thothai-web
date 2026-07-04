@@ -72,10 +72,10 @@ function About() {
               <h2 className="mt-3 font-display text-4xl font-extrabold tracking-tight md:text-5xl">
                 Make commerce as easy as texting a friend.
               </h2>
-              <p className="mt-5 text-lg text-foreground/65">
+              <p className="mt-5 body-text text-foreground/65">
                 The gap between "I want that" and "I bought that" is still enormous for most people in Africa. Existing e-commerce platforms assume high bandwidth, credit cards, and smartphones powerful enough to run native apps.
               </p>
-              <p className="mt-4 text-lg text-foreground/65">
+              <p className="mt-4 body-text text-foreground/65">
                 WhatsApp has none of those assumptions. 90%+ of smartphone users in Ghana already have it. We build the rails that make WhatsApp a real commerce channel — payments, fulfilment, tracking, operations — not just a chat.
               </p>
             </div>
@@ -105,10 +105,10 @@ function About() {
               Every African merchant.<br />
               <span className="text-primary">One conversation away.</span>
             </h2>
-            <p className="mx-auto mt-6 max-w-2xl text-lg text-white/65">
+            <p className="mx-auto mt-6 max-w-2xl body-text text-white/65">
               Africa is adding tens of millions of new internet users every year — nearly all arriving mobile-first, on WhatsApp before they're on any other platform. The commerce infrastructure they deserve shouldn't require an app store, a bank card, or a broadband connection.
             </p>
-            <p className="mx-auto mt-4 max-w-2xl text-lg text-white/65">
+            <p className="mx-auto mt-4 max-w-2xl body-text text-white/65">
               We're building the commerce operating system for Africa — the layer that connects merchants to customers, payments to orders, and conversations to revenue across every category, every language, and every market on the continent. We started in Ghana because the problem is sharpest here. We're not stopping here.
             </p>
           </div>
@@ -129,7 +129,7 @@ function About() {
             ].map((c) => (
               <div key={c.heading} className="rounded-2xl border border-white/10 bg-dark-card p-7">
                 <h3 className="font-display text-lg font-bold">{c.heading}</h3>
-                <p className="mt-2 text-sm text-white/60 leading-relaxed">{c.body}</p>
+                <p className="mt-2 body-text text-white/60 leading-relaxed">{c.body}</p>
               </div>
             ))}
           </div>
@@ -152,7 +152,7 @@ function About() {
                   <v.icon className="h-5 w-5" />
                 </span>
                 <h3 className="mt-5 font-display text-xl font-bold">{v.title}</h3>
-                <p className="mt-2 text-sm text-foreground/65 leading-relaxed">{v.desc}</p>
+                <p className="mt-2 body-text text-foreground/65 leading-relaxed">{v.desc}</p>
               </div>
             ))}
           </div>
@@ -167,7 +167,7 @@ function About() {
             <h2 className="mt-3 font-display text-4xl font-extrabold tracking-tight md:text-5xl">
               Build the future of commerce in Ghana.
             </h2>
-            <p className="mt-4 text-foreground/65">
+            <p className="mt-4 body-text text-foreground/65">
               We're not actively hiring right now, but we're always happy to hear from people who want to build this with us.
             </p>
             <a

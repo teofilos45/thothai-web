@@ -90,7 +90,7 @@ function Home() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.12 }}
-            className="mx-auto mt-6 max-w-2xl text-lg text-white/65"
+            className="mx-auto mt-6 max-w-2xl body-text text-white/65"
           >
             We build WhatsApp-native commerce infrastructure for Africa — starting with food, expanding to everything you can sell.
           </motion.p>
@@ -162,7 +162,7 @@ function Home() {
                     {p.name === "Thoth" && <IOIIcon className="h-5 w-5 flex-shrink-0 text-primary" />}
                   </h3>
                   <p className="mt-1 font-display text-lg font-semibold text-primary">{p.tagline}</p>
-                  <p className="mt-3 flex-1 text-sm text-white/60 leading-relaxed">{p.desc}</p>
+                  <p className="mt-3 flex-1 body-text text-white/60">{p.desc}</p>
                   <Link
                     to={p.href as any}
                     className="mt-6 inline-flex h-11 w-fit items-center gap-2 rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground"

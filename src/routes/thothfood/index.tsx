@@ -1,3 +1,4 @@
+import { useRef, useState, useEffect } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { MessageCircle, ShoppingBag, Wallet, MapPin, Sparkles, Shield, Bot, Smartphone, ArrowRight } from "lucide-react";
 import { motion } from "motion/react";
@@ -21,6 +22,28 @@ export const Route = createFileRoute("/thothfood/")({
 });
 
 function Home() {
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const [demoSlide, setDemoSlide] = useState(0);
+  const [demoTotal, setDemoTotal] = useState(8);
+
+  useEffect(() => {
+    function onMessage(e: MessageEvent) {
+      if (e.data?.type === "thothai-demo-slide") {
+        setDemoSlide(e.data.cur as number);
+        setDemoTotal(e.data.total as number);
+      } else if (e.data?.type === "thothai-demo-end") {
+        setDemoSlide(-1);
+      }
+    }
+    window.addEventListener("message", onMessage);
+    return () => window.removeEventListener("message", onMessage);
+  }, []);
+
+  function jumpToSlide(n: number) {
+    iframeRef.current?.contentWindow?.postMessage({ type: "thothai-demo-jump", n }, "*");
+    setDemoSlide(n);
+  }
+
   return (
     <>
       {/* HERO */}
@@ -60,7 +83,7 @@ function Home() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="mt-6 max-w-lg text-lg text-white/70"
+              className="mt-6 max-w-lg body-text text-white/70"
             >
               If you can text, you can eat. Browse menus, pay with MoMo, and track your delivery — all without leaving your favourite chat app.
             </motion.p>
@@ -92,7 +115,7 @@ function Home() {
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex justify-center"
+            className="flex flex-col items-center"
           >
             <div
               style={{
@@ -103,6 +126,7 @@ function Home() {
               }}
             >
               <iframe
+                ref={iframeRef}
                 src="/demo/thothfood-demo.html"
                 title="Thoth live demo"
                 style={{
@@ -114,6 +138,22 @@ function Home() {
                 }}
                 loading="lazy"
               />
+            </div>
+            {/* Slide dots — outside the iframe, synced via postMessage */}
+            <div className="mt-3 flex items-center justify-center gap-1.5">
+              {Array.from({ length: demoTotal }, (_, i) => (
+                <button
+                  key={i}
+                  onClick={() => jumpToSlide(i)}
+                  className="rounded-full transition-all duration-300"
+                  style={{
+                    height: "5px",
+                    width: demoSlide === i ? "22px" : "5px",
+                    background: demoSlide === i ? "oklch(0.745 0.165 60)" : "rgba(255,255,255,0.2)",
+                  }}
+                  aria-label={`Go to slide ${i + 1}`}
+                />
+              ))}
             </div>
           </motion.div>
         </div>
@@ -166,7 +206,7 @@ function Home() {
                   <span className="font-display text-3xl font-extrabold text-foreground/10">{s.step}</span>
                 </div>
                 <h3 className="mt-5 font-display text-xl font-bold">{s.title}</h3>
-                <p className="mt-2 text-sm text-foreground/65">{s.desc}</p>
+                <p className="mt-2 body-text text-foreground/65">{s.desc}</p>
               </div>
             ))}
           </div>
@@ -186,7 +226,7 @@ function Home() {
                 href={r.waUrl ?? WHATSAPP_ORDER_URL}
                 className="group flex items-center gap-3 rounded-2xl border border-border bg-card px-5 py-3.5 transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-[0_8px_24px_-8px_oklch(0.745_0.165_60/0.2)]"
               >
-                <span className="text-2xl">{r.emoji}</span>
+                <img src={r.image} alt={r.name} className="h-10 w-10 flex-shrink-0 rounded-xl object-cover" />
                 <div className="text-left">
                   <p className="text-sm font-semibold group-hover:text-primary">{r.name}</p>
                   <p className="text-xs text-foreground/50">{r.cuisine} · {r.area}</p>
@@ -224,7 +264,7 @@ function Home() {
                   <b.icon className="h-5 w-5" />
                 </span>
                 <h3 className="mt-5 font-display text-lg font-bold">{b.title}</h3>
-                <p className="mt-1.5 text-sm text-foreground/65">{b.desc}</p>
+                <p className="mt-1.5 body-text text-foreground/65">{b.desc}</p>
               </div>
             ))}
           </div>
@@ -247,7 +287,7 @@ function Home() {
                 <h2 className="mt-5 font-display text-4xl font-extrabold leading-tight md:text-6xl">
                   Food was just<br />the beginning.
                 </h2>
-                <p className="mt-5 max-w-lg text-lg text-white/65">
+                <p className="mt-5 max-w-lg body-text text-white/65">
                   Meet <span className="font-semibold text-white">ThothShop</span> — WhatsApp commerce for every small business in Ghana. Clothing, electronics, beauty, crafts. One chat. Anything you sell.
                 </p>
                 <Link

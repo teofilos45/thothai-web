@@ -121,7 +121,7 @@ function Pricing() {
           <h1 className="mx-auto mt-5 max-w-3xl font-display text-5xl font-extrabold tracking-tight md:text-7xl">
             Pricing that starts at <span className="text-primary">zero.</span>
           </h1>
-          <p className="mx-auto mt-5 max-w-xl text-lg text-white/65">
+          <p className="mx-auto mt-5 max-w-xl body-text text-white/65">
             Get your restaurant on WhatsApp for free. Upgrade to Pro when your kitchen is ready to grow.
           </p>
         </div>
@@ -140,7 +140,7 @@ function Pricing() {
                   <span className="font-display text-5xl font-extrabold tracking-tight">₵0</span>
                   <span className="mb-1 text-sm text-foreground/50">, forever</span>
                 </div>
-                <p className="mt-3 text-sm text-foreground/65">
+                <p className="mt-3 body-text text-foreground/65">
                   Get discovered on the central Choppa number.
                 </p>
                 <a
@@ -178,7 +178,7 @@ function Pricing() {
                   <span className="mb-1 text-sm text-white/50">/month</span>
                 </div>
                 <p className="mt-1 text-xs text-white/50">14-day free trial</p>
-                <p className="mt-3 text-sm text-white/65">
+                <p className="mt-3 body-text text-white/65">
                   Everything in Free, plus the tools to take your kitchen further.
                 </p>
                 <a
@@ -213,7 +213,7 @@ function Pricing() {
                 <div className="mt-3">
                   <span className="font-display text-4xl font-extrabold tracking-tight text-white/60">Custom</span>
                 </div>
-                <p className="mt-3 text-sm text-white/40">
+                <p className="mt-3 body-text text-white/40">
                   Everything in Pro, plus advanced tools for high-volume kitchens.
                 </p>
                 <Link
@@ -299,7 +299,7 @@ function Pricing() {
                   <AccordionTrigger className="py-5 font-display text-base font-bold hover:no-underline">
                     {faq.q}
                   </AccordionTrigger>
-                  <AccordionContent className="pb-5 text-sm text-foreground/65">
+                  <AccordionContent className="pb-5 body-text text-foreground/65">
                     {faq.a}
                   </AccordionContent>
                 </AccordionItem>

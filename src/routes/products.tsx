@@ -47,7 +47,7 @@ function Products() {
           <h1 className="mx-auto mt-5 max-w-3xl font-display text-5xl font-extrabold tracking-tight md:text-7xl">
             One platform. <span className="text-primary">Every category.</span>
           </h1>
-          <p className="mx-auto mt-5 max-w-xl text-lg text-white/65">
+          <p className="mx-auto mt-5 max-w-xl body-text text-white/65">
             We started with food because the ordering flow is universal and the pain is daily. ThothShop extends the same rails to every merchant type in Ghana.
           </p>
         </div>
@@ -88,7 +88,7 @@ function Products() {
                     {p.name === "Thoth" && <IOIIcon className="h-5 w-5 flex-shrink-0 text-primary" />}
                   </h2>
                   <p className="mt-1 font-display text-lg font-semibold text-primary">{p.tagline}</p>
-                  <p className="mt-3 flex-1 text-sm text-white/60 leading-relaxed">{p.desc}</p>
+                  <p className="mt-3 flex-1 body-text text-white/60 leading-relaxed">{p.desc}</p>
                   <Link
                     to={p.href as any}
                     className="mt-6 inline-flex h-11 w-fit items-center gap-2 rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground"

@@ -71,7 +71,7 @@ function Contact() {
           <h1 className="mx-auto mt-5 max-w-3xl font-display text-5xl font-extrabold tracking-tight md:text-7xl">
             Let's <span className="text-primary">chat.</span>
           </h1>
-          <p className="mx-auto mt-5 max-w-xl text-lg text-white/65">
+          <p className="mx-auto mt-5 max-w-xl body-text text-white/65">
             Hungry customer with a question? Restaurant ready to go live? Drop us a line.
           </p>
         </div>

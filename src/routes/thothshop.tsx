@@ -50,7 +50,7 @@ function ThothShop() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.12 }}
-            className="mx-auto mt-6 max-w-2xl text-lg text-white/65"
+            className="mx-auto mt-6 max-w-2xl body-text text-white/65"
           >
             WhatsApp commerce for every small business in Ghana. Clothing, electronics, beauty, crafts — same infrastructure as Thoth, extended to every merchant category.
           </motion.p>
@@ -124,7 +124,7 @@ function ThothShop() {
             ].map((f) => (
               <div key={f.title} className="rounded-2xl bg-secondary p-7 ring-1 ring-border">
                 <h3 className="font-display text-xl font-bold">{f.title}</h3>
-                <p className="mt-2 text-sm text-foreground/65 leading-relaxed">{f.desc}</p>
+                <p className="mt-2 body-text text-foreground/65 leading-relaxed">{f.desc}</p>
               </div>
             ))}
           </div>

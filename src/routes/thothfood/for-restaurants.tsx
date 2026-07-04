@@ -49,7 +49,7 @@ function ForRestaurants() {
             <h1 className="mt-5 font-display text-5xl font-extrabold leading-[1.05] tracking-tight md:text-6xl lg:text-7xl">
               Put your restaurant on WhatsApp. <span className="text-primary">Free.</span>
             </h1>
-            <p className="mt-6 max-w-lg text-lg text-foreground/65">
+            <p className="mt-6 max-w-lg body-text text-foreground/65">
               List your menu at your prices — pay nothing to get started. Your customers already live on WhatsApp. Meet them there.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
@@ -127,7 +127,7 @@ function ForRestaurants() {
                   <f.icon className="h-5 w-5" />
                 </span>
                 <h3 className="mt-5 font-display text-base font-bold">{f.title}</h3>
-                <p className="mt-1.5 text-sm text-foreground/65">{f.desc}</p>
+                <p className="mt-1.5 body-text text-foreground/65">{f.desc}</p>
               </div>
             ))}
           </div>
@@ -181,7 +181,7 @@ function ForRestaurants() {
                   <t.icon className="h-5 w-5" />
                 </span>
                 <h3 className="mt-5 font-display text-lg font-bold">{t.title}</h3>
-                <p className="mt-1.5 text-sm text-white/60">{t.desc}</p>
+                <p className="mt-1.5 body-text text-white/60">{t.desc}</p>
               </div>
             ))}
           </div>
