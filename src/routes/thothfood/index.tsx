@@ -9,9 +9,9 @@ import { featuredRestaurants } from "@/data/featured-restaurants";
 export const Route = createFileRoute("/thothfood/")({
   head: () => ({
     meta: [
-      { title: "ThothFood — Hungry? Just WhatsApp it." },
+      { title: "Thoth — Hungry? Just WhatsApp it." },
       { name: "description", content: "Order food on WhatsApp from your favourite restaurants in Ghana. No app, no stress. Pay with MoMo or card." },
-      { property: "og:title", content: "ThothFood — Hungry? Just WhatsApp it." },
+      { property: "og:title", content: "Thoth — Hungry? Just WhatsApp it." },
       { property: "og:description", content: "Order food on WhatsApp from your favourite restaurants in Ghana. No app, no account, no stress." },
       { property: "og:type", content: "website" },
       { property: "og:image", content: "/og/thothfood.png" },
@@ -104,7 +104,7 @@ function Home() {
             >
               <iframe
                 src="/demo/thothfood-demo.html"
-                title="ThothFood live demo"
+                title="Thoth live demo"
                 style={{
                   width: "280px",
                   height: "580px",
@@ -201,7 +201,7 @@ function Home() {
       <section className="bg-secondary py-24">
         <div className="container-page">
           <div className="mx-auto max-w-2xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-wider text-primary">Why ThothFood</p>
+            <p className="text-sm font-semibold uppercase tracking-wider text-primary">Why Thoth</p>
             <h2 className="mt-3 font-display text-4xl font-extrabold tracking-tight md:text-5xl">
               Built for how you actually order.
             </h2>
@@ -274,7 +274,7 @@ function Home() {
         <div className="container-page">
           <div className="flex flex-col items-center justify-between gap-4 rounded-3xl border border-border bg-dark px-8 py-6 text-dark-foreground sm:flex-row">
             <p className="font-display text-lg font-bold">
-              Own a restaurant? Get on ThothFood free.
+              Own a restaurant? Get on Thoth free.
             </p>
             <div className="flex items-center gap-3">
               <a

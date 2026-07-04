@@ -8,7 +8,7 @@ export const Route = createFileRoute("/thothshop")({
       { title: "ThothShop — Sell anything on WhatsApp" },
       { name: "description", content: "WhatsApp commerce for every small business in Ghana. Clothing, electronics, beauty, crafts — sell anything without an app or website." },
       { property: "og:title", content: "ThothShop — Sell anything on WhatsApp" },
-      { property: "og:description", content: "WhatsApp commerce for every small business in Ghana. Coming soon from ThothAI Technologies." },
+      { property: "og:description", content: "WhatsApp commerce for every small business in Ghana. Coming soon from Thoth Technologies." },
       { property: "og:type", content: "website" },
       { property: "og:image", content: "/og/thothfood.png" },
     ],
@@ -52,7 +52,7 @@ function ThothShop() {
             transition={{ delay: 0.12 }}
             className="mx-auto mt-6 max-w-2xl text-lg text-white/65"
           >
-            WhatsApp commerce for every small business in Ghana. Clothing, electronics, beauty, crafts — same infrastructure as ThothFood, extended to every merchant category.
+            WhatsApp commerce for every small business in Ghana. Clothing, electronics, beauty, crafts — same infrastructure as Thoth, extended to every merchant category.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -110,7 +110,7 @@ function ThothShop() {
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-sm font-semibold uppercase tracking-wider text-primary">Same rails. New categories.</p>
             <h2 className="mt-3 font-display text-4xl font-extrabold tracking-tight md:text-5xl">
-              Built on everything ThothFood proved.
+              Built on everything Thoth proved.
             </h2>
             <p className="mt-4 text-foreground/65">
               Payments, catalogue, order management, live tracking — the same infrastructure powering restaurants in Accra, extended to every merchant type.

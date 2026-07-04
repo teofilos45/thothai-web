@@ -4,10 +4,10 @@ import { ArrowRight, Sparkles } from "lucide-react";
 export const Route = createFileRoute("/products")({
   head: () => ({
     meta: [
-      { title: "Our Products — ThothAI Technologies" },
-      { name: "description", content: "ThothFood and ThothShop — one WhatsApp commerce platform, every category. Order food or sell anything, all inside the chat your customers already use." },
-      { property: "og:title", content: "Our Products — ThothAI Technologies" },
-      { property: "og:description", content: "One platform. Every category. ThothFood is live in Accra. ThothShop is coming soon." },
+      { title: "Our Products — Thoth Technologies" },
+      { name: "description", content: "Thoth and ThothShop — one WhatsApp commerce platform, every category. Order food or sell anything, all inside the chat your customers already use." },
+      { property: "og:title", content: "Our Products — Thoth Technologies" },
+      { property: "og:description", content: "One platform. Every category. Thoth is live in Accra. ThothShop is coming soon." },
       { property: "og:type", content: "website" },
     ],
   }),
@@ -16,7 +16,7 @@ export const Route = createFileRoute("/products")({
 
 const products = [
   {
-    name: "ThothFood",
+    name: "Thoth",
     status: "live" as const,
     tagline: "Order food on WhatsApp.",
     desc: "WhatsApp-native food ordering for restaurants in Ghana. Customers browse the menu, pay with MoMo or card, and track their order — all inside the WhatsApp chat they already use. Restaurants manage it all from a real-time kitchen dashboard.",
@@ -28,7 +28,7 @@ const products = [
     name: "ThothShop",
     status: "coming" as const,
     tagline: "Sell anything on WhatsApp.",
-    desc: "WhatsApp commerce for every small business in Ghana. Clothing, electronics, beauty, crafts — same infrastructure as ThothFood, extended to every merchant category.",
+    desc: "WhatsApp commerce for every small business in Ghana. Clothing, electronics, beauty, crafts — same infrastructure as Thoth, extended to every merchant category.",
     href: "/thothshop",
     cta: "Join waitlist",
     icon: "🛍️",
@@ -61,7 +61,7 @@ function Products() {
                 className="flex flex-col rounded-3xl border border-white/10 bg-dark-card p-8"
               >
                 <div className="flex items-start justify-between">
-                  {p.name === "ThothFood" ? (
+                  {p.name === "Thoth" ? (
                     <img src="/images/thothfood-card.jpg" alt="Food ready for delivery" className="h-16 w-16 rounded-2xl object-cover" />
                   ) : (
                     <span className="text-4xl">{p.icon}</span>

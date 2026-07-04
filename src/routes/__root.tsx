@@ -20,7 +20,7 @@ const PLAUSIBLE_DOMAIN = import.meta.env.VITE_PLAUSIBLE_DOMAIN as string | undef
 const orgSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "ThothAI Technologies",
+  name: "Thoth Technologies",
   url: SITE_URL,
   logo: `${SITE_URL}/og/thothfood.png`,
   contactPoint: {
@@ -33,7 +33,7 @@ const orgSchema = {
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: "ThothFood",
+  name: "Thoth",
   url: SITE_URL,
 };
 
@@ -101,10 +101,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "ThothFood — Hungry? Just WhatsApp it." },
+      { title: "Thoth — Hungry? Just WhatsApp it." },
       { name: "description", content: "Order food on WhatsApp from your favourite restaurants in Ghana. No app to download. Pay with MoMo. Delivery or pickup." },
-      { name: "author", content: "ThothAI Technologies" },
-      { property: "og:title", content: "ThothFood — Hungry? Just WhatsApp it." },
+      { name: "author", content: "Thoth Technologies" },
+      { property: "og:title", content: "Thoth — Hungry? Just WhatsApp it." },
       { property: "og:description", content: "Order food on WhatsApp from your favourite restaurants in Ghana. No app to download." },
       { property: "og:type", content: "website" },
       { property: "og:image", content: "/og/thothfood.png" },
@@ -117,7 +117,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap",
       },
       { rel: "stylesheet", href: appCss },
     ],

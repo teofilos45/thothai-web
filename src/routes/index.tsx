@@ -6,9 +6,9 @@ import { motion } from "motion/react";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "ThothAI Technologies — Building the commerce layer for Africa on WhatsApp" },
-      { name: "description", content: "ThothAI Technologies builds WhatsApp-native commerce infrastructure for Africa. ThothFood lets restaurants take orders on WhatsApp. ThothShop brings the same to every merchant." },
-      { property: "og:title", content: "ThothAI Technologies" },
+      { title: "Thoth Technologies — Building the commerce layer for Africa on WhatsApp" },
+      { name: "description", content: "Thoth Technologies builds WhatsApp-native commerce infrastructure for Africa. Thoth lets restaurants take orders on WhatsApp. ThothShop brings the same to every merchant." },
+      { property: "og:title", content: "Thoth Technologies" },
       { property: "og:description", content: "Building the commerce layer for Africa on WhatsApp." },
       { property: "og:type", content: "website" },
     ],
@@ -18,7 +18,7 @@ export const Route = createFileRoute("/")({
 
 const products = [
   {
-    name: "ThothFood",
+    name: "Thoth",
     status: "live" as const,
     tagline: "Order food on WhatsApp.",
     desc: "WhatsApp-native food ordering for restaurants in Ghana. Customers browse the menu, pay with MoMo or card, and track their order — all inside the WhatsApp chat they already use. Restaurants manage it all from a real-time kitchen dashboard.",
@@ -30,7 +30,7 @@ const products = [
     name: "ThothShop",
     status: "coming" as const,
     tagline: "Sell anything on WhatsApp.",
-    desc: "WhatsApp commerce for every small business in Ghana. Clothing, electronics, beauty, crafts — same infrastructure as ThothFood, extended to every merchant category.",
+    desc: "WhatsApp commerce for every small business in Ghana. Clothing, electronics, beauty, crafts — same infrastructure as Thoth, extended to every merchant category.",
     href: "/thothshop",
     cta: "Join waitlist",
     icon: "🛍️",
@@ -103,7 +103,7 @@ function Home() {
               to="/thothfood"
               className="inline-flex h-12 items-center gap-2 rounded-full bg-primary px-6 font-semibold text-primary-foreground shadow-[0_12px_40px_-12px_oklch(0.745_0.165_60/0.6)]"
             >
-              See ThothFood <ArrowRight className="h-4 w-4" />
+              See Thoth <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
               to="/about"
@@ -135,7 +135,7 @@ function Home() {
                 className="flex flex-col rounded-3xl border border-white/10 bg-dark-card p-8"
               >
                 <div className="flex items-start justify-between">
-                  {p.name === "ThothFood" ? (
+                  {p.name === "Thoth" ? (
                     <img src="/images/thothfood-card.jpg" alt="Food ready for delivery" className="h-16 w-16 rounded-2xl object-cover" />
                   ) : (
                     <span className="text-4xl">{p.icon}</span>
@@ -205,7 +205,7 @@ function Home() {
             <h2 className="font-display text-2xl font-extrabold tracking-tight md:text-4xl">
               Ready to take orders on WhatsApp?
             </h2>
-            <p className="mt-1 opacity-80">ThothFood is live now. Free to start.</p>
+            <p className="mt-1 opacity-80">Thoth is live now. Free to start.</p>
           </div>
           <a
             href={SIGNUP_URL}

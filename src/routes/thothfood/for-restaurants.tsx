@@ -9,9 +9,9 @@ import { trackStartFree } from "@/lib/pixel";
 export const Route = createFileRoute("/thothfood/for-restaurants")({
   head: () => ({
     meta: [
-      { title: "For Restaurants — ThothFood" },
+      { title: "For Restaurants — Thoth" },
       { name: "description", content: "Put your restaurant on WhatsApp. Free. Real-time kitchen dashboard, MoMo payments, menu management — and your customers are already there." },
-      { property: "og:title", content: "Put your restaurant on WhatsApp. Free. — ThothFood" },
+      { property: "og:title", content: "Put your restaurant on WhatsApp. Free. — Thoth" },
       { property: "og:description", content: "List your menu at your prices. Pay nothing to get started. Real-time dashboard, MoMo payments, delivery zones." },
       { property: "og:type", content: "website" },
       { property: "og:image", content: "/og/thothfood-restaurants.png" },

@@ -4,8 +4,8 @@ import { CONTACT_EMAIL } from "@/lib/site";
 export const Route = createFileRoute("/privacy")({
   head: () => ({
     meta: [
-      { title: "Privacy Policy — ThothFood" },
-      { name: "description", content: "ThothFood Privacy Policy." },
+      { title: "Privacy Policy — Thoth" },
+      { name: "description", content: "Thoth Privacy Policy." },
       { name: "robots", content: "noindex" },
     ],
   }),
@@ -21,7 +21,7 @@ function Privacy() {
 
         <div className="prose prose-slate mt-10 max-w-none text-foreground/80">
           <p className="rounded-2xl border border-primary/30 bg-primary/5 p-5 text-sm font-medium text-foreground">
-            ThothFood's Privacy Policy is being prepared and will be published here shortly.
+            Thoth's Privacy Policy is being prepared and will be published here shortly.
             For any privacy-related queries, contact us at{" "}
             <a href={`mailto:${CONTACT_EMAIL}`} className="text-primary hover:underline">{CONTACT_EMAIL}</a>.
           </p>

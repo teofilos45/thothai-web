@@ -1,9 +1,10 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useState } from "react";
-import { Menu, X, MessageCircle, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { LOGIN_URL } from "@/lib/site";
 import { WhatsAppLink } from "@/components/site/WhatsAppLink";
 import { ThothAILogo } from "@/components/site/ThothAILogo";
+import { ThothFoodLogo } from "@/components/site/ThothFoodLogo";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 
 const thothFoodLinks = [
@@ -33,13 +34,10 @@ export function Header() {
         {isThothFood ? (
           <div className="flex flex-col justify-center">
             <Link to="/" className="text-[10px] font-semibold leading-none text-foreground/40 transition-colors hover:text-foreground/70">
-              ThothAI Technologies ↗
+              Thoth Technologies ↗
             </Link>
-            <Link to="/thothfood" className="mt-0.5 flex items-center gap-1.5 font-display text-xl font-extrabold tracking-tight">
-              <span className="grid h-7 w-7 place-items-center rounded-lg bg-primary text-primary-foreground">
-                <MessageCircle className="h-3.5 w-3.5" strokeWidth={2.5} />
-              </span>
-              <span>Thoth<span className="text-primary">Food</span></span>
+            <Link to="/thothfood" className="mt-0.5">
+              <ThothFoodLogo size="sm" />
             </Link>
           </div>
         ) : (
@@ -69,7 +67,7 @@ export function Header() {
                     <DropdownMenuContent className="w-56 rounded-2xl border border-border bg-card p-2" align="start">
                       <DropdownMenuItem asChild>
                         <Link to="/thothfood" className="flex cursor-pointer flex-col gap-0.5 rounded-xl px-3 py-2.5">
-                          <span className="text-sm font-semibold">ThothFood</span>
+                          <span className="text-sm font-semibold">Thoth</span>
                           <span className="text-xs text-muted-foreground">Order food on WhatsApp</span>
                         </Link>
                       </DropdownMenuItem>

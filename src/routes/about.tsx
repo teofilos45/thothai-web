@@ -5,10 +5,10 @@ import { CONTACT_EMAIL } from "@/lib/site";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About Us — ThothAI Technologies" },
+      { title: "About Us — Thoth Technologies" },
       { name: "description", content: "Our mission is to make commerce as easy as texting a friend. We build WhatsApp-native commerce infrastructure for Africa, starting with Ghana." },
-      { property: "og:title", content: "About ThothAI Technologies" },
-      { property: "og:description", content: "Building the commerce layer for Africa on WhatsApp. Our mission, values, and the team behind ThothFood and ThothShop." },
+      { property: "og:title", content: "About Thoth Technologies" },
+      { property: "og:description", content: "Building the commerce layer for Africa on WhatsApp. Our mission, values, and the team behind Thoth and ThothShop." },
       { property: "og:type", content: "website" },
     ],
   }),
@@ -114,7 +114,7 @@ function About() {
               We're not actively hiring right now, but we're always happy to hear from people who want to build this with us.
             </p>
             <a
-              href={`mailto:${CONTACT_EMAIL}?subject=Careers at ThothAI`}
+              href={`mailto:${CONTACT_EMAIL}?subject=Careers at Thoth Technologies`}
               className="mt-6 inline-flex h-11 items-center gap-2 rounded-full border border-border px-5 text-sm font-semibold hover:bg-muted"
             >
               <Mail className="h-4 w-4" /> Send us your CV

@@ -10,10 +10,10 @@ export const Route = createFileRoute("/contact")({
   }),
   head: () => ({
     meta: [
-      { title: "Contact — ThothFood" },
-      { name: "description", content: "Get in touch with the ThothFood team. Customer or restaurant owner — we'd love to hear from you." },
-      { property: "og:title", content: "Contact ThothFood" },
-      { property: "og:description", content: "Reach the ThothFood team in Accra. Fastest reply via WhatsApp." },
+      { title: "Contact — Thoth" },
+      { name: "description", content: "Get in touch with the Thoth team. Customer or restaurant owner — we'd love to hear from you." },
+      { property: "og:title", content: "Contact Thoth" },
+      { property: "og:description", content: "Reach the Thoth team in Accra. Fastest reply via WhatsApp." },
       { property: "og:type", content: "website" },
       { property: "og:image", content: "/og/thothfood.png" },
     ],
@@ -88,7 +88,7 @@ function Contact() {
                 </span>
                 <h2 className="mt-6 font-display text-3xl font-extrabold">Message sent!</h2>
                 <p className="mt-2 max-w-sm text-foreground/65">
-                  Thanks for reaching out — someone from the ThothFood team will be in touch shortly.
+                  Thanks for reaching out — someone from the Thoth team will be in touch shortly.
                 </p>
               </div>
             ) : (

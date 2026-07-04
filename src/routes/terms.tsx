@@ -4,8 +4,8 @@ import { CONTACT_EMAIL } from "@/lib/site";
 export const Route = createFileRoute("/terms")({
   head: () => ({
     meta: [
-      { title: "Terms of Service — ThothFood" },
-      { name: "description", content: "ThothFood Terms of Service." },
+      { title: "Terms of Service — Thoth" },
+      { name: "description", content: "Thoth Terms of Service." },
       { name: "robots", content: "noindex" },
     ],
   }),
@@ -21,14 +21,14 @@ function Terms() {
 
         <div className="prose prose-slate mt-10 max-w-none text-foreground/80">
           <p className="rounded-2xl border border-primary/30 bg-primary/5 p-5 text-sm font-medium text-foreground">
-            Legal copy for ThothFood's Terms of Service is being prepared and will be published here shortly.
+            Legal copy for Thoth's Terms of Service is being prepared and will be published here shortly.
             For any urgent legal queries, contact us at{" "}
             <a href={`mailto:${CONTACT_EMAIL}`} className="text-primary hover:underline">{CONTACT_EMAIL}</a>.
           </p>
 
           <h2 className="mt-10 font-display text-2xl font-bold">Service Charge Disclosure</h2>
           <p>
-            When you place an order through ThothFood, a service charge may be applied at checkout.
+            When you place an order through Thoth, a service charge may be applied at checkout.
             This charge is disclosed clearly before you confirm payment and covers platform operations,
             payment processing, and order support.
           </p>

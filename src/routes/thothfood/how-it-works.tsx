@@ -7,10 +7,10 @@ import { WhatsAppLink } from "@/components/site/WhatsAppLink";
 export const Route = createFileRoute("/thothfood/how-it-works")({
   head: () => ({
     meta: [
-      { title: "How it works — ThothFood" },
-      { name: "description", content: "From tap to table: the full ThothFood ordering journey on WhatsApp, step by step." },
-      { property: "og:title", content: "How ThothFood works" },
-      { property: "og:description", content: "From tap to table: the full ThothFood ordering journey on WhatsApp." },
+      { title: "How it works — Thoth" },
+      { name: "description", content: "From tap to table: the full Thoth ordering journey on WhatsApp, step by step." },
+      { property: "og:title", content: "How Thoth works" },
+      { property: "og:description", content: "From tap to table: the full Thoth ordering journey on WhatsApp." },
       { property: "og:type", content: "website" },
       { property: "og:image", content: "/og/thothfood.png" },
     ],
@@ -31,7 +31,7 @@ const steps = [
     icon: MessageCircle,
     title: "Chat opens. Bot greets you.",
     state: "NEW",
-    desc: "Tap a restaurant's WhatsApp link — from Instagram, a flyer, or a menu QR code. The ThothFood bot sends a welcome and waits. No account, no download, no email required.",
+    desc: "Tap a restaurant's WhatsApp link — from Instagram, a flyer, or a menu QR code. The Thoth bot sends a welcome and waits. No account, no download, no email required.",
     mock: {
       restaurant: "Severin Plus",
       messages: [
@@ -173,7 +173,7 @@ function HowItWorks() {
             From tap to <span className="text-primary">table.</span>
           </h1>
           <p className="mx-auto mt-5 max-w-2xl text-lg text-white/65">
-            The full ThothFood journey, step by step. Every step happens right inside WhatsApp.
+            The full Thoth journey, step by step. Every step happens right inside WhatsApp.
           </p>
         </div>
       </section>

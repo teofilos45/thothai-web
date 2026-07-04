@@ -12,9 +12,9 @@ import { trackStartFree } from "@/lib/pixel";
 export const Route = createFileRoute("/thothfood/pricing")({
   head: () => ({
     meta: [
-      { title: "Pricing — ThothFood" },
-      { name: "description", content: "Start free. Upgrade when you're ready. ThothFood's Free plan costs nothing — get on WhatsApp and start taking orders today." },
-      { property: "og:title", content: "Pricing — ThothFood" },
+      { title: "Pricing — Thoth" },
+      { name: "description", content: "Start free. Upgrade when you're ready. Thoth's Free plan costs nothing — get on WhatsApp and start taking orders today." },
+      { property: "og:title", content: "Pricing — Thoth" },
       { property: "og:description", content: "Start free. Upgrade when you're ready. No upfront cost to get your restaurant on WhatsApp." },
       { property: "og:type", content: "website" },
       { property: "og:image", content: "/og/thothfood.png" },
@@ -71,7 +71,7 @@ const faqs = [
   },
   {
     q: "How long does onboarding take?",
-    a: "Most restaurants are live and taking real orders within a week. Our team walks you through all 8 steps — from setting up your profile and uploading your menu to connecting payments and going live.",
+    a: "Most restaurants are live and taking real orders the same day. The setup is fast — create your account, upload your menu, connect payments, and you're open for business. Our team is with you every step of the way.",
   },
   {
     q: "How and when do I get paid?",

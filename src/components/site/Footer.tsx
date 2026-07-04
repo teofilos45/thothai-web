@@ -47,7 +47,7 @@ export function Footer() {
           <div>
             <h4 className="font-display text-sm font-bold uppercase tracking-wider text-white/50">Products</h4>
             <ul className="mt-4 space-y-3 text-sm">
-              <li><Link to="/thothfood" className="text-white/70 hover:text-primary">ThothFood</Link></li>
+              <li><Link to="/thothfood" className="text-white/70 hover:text-primary">Thoth</Link></li>
               <li><Link to="/thothshop" className="text-white/70 hover:text-primary">ThothShop</Link></li>
               <li><Link to="/thothfood/how-it-works" className="text-white/70 hover:text-primary">How it works</Link></li>
               <li><Link to="/thothfood/for-restaurants" className="text-white/70 hover:text-primary">For Restaurants</Link></li>
@@ -81,7 +81,7 @@ export function Footer() {
         </div>
 
         <div className="mt-12 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/40 md:flex-row md:items-center">
-          <p>© {new Date().getFullYear()} ThothAI Technologies. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Thoth Technologies. All rights reserved.</p>
           <div className="flex gap-4">
             <Link to="/terms" className="hover:text-white/70">Terms</Link>
             <Link to="/privacy" className="hover:text-white/70">Privacy</Link>
