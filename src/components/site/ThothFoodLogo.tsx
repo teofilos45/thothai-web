@@ -1,4 +1,4 @@
-function IOIIcon({ className }: { className?: string }) {
+export function IOIIcon({ className }: { className?: string }) {
   return (
     <svg
       viewBox="0 0 20 20"

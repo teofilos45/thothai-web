@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Sparkles } from "lucide-react";
+import { IOIIcon } from "@/components/site/ThothFoodLogo";
 
 export const Route = createFileRoute("/products")({
   head: () => ({
@@ -72,7 +73,10 @@ function Products() {
                     </span>
                   )}
                 </div>
-                <h2 className="mt-5 font-display text-2xl font-extrabold">{p.name}</h2>
+                <h2 className="mt-5 flex items-center gap-2 font-display text-2xl font-extrabold">
+                  {p.name}
+                  {p.name === "Thoth" && <IOIIcon className="h-5 w-5 flex-shrink-0 text-primary" />}
+                </h2>
                 <p className="mt-1 font-display text-lg font-semibold text-primary">{p.tagline}</p>
                 <p className="mt-3 flex-1 text-sm text-white/60 leading-relaxed">{p.desc}</p>
                 <Link
