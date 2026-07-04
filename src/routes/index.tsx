@@ -62,11 +62,11 @@ function Home() {
         />
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 opacity-20"
+          className="pointer-events-none absolute inset-0 opacity-25"
           style={{
-            backgroundImage: "url('/images/hero-bg-photo.jpg')",
+            backgroundImage: "url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1920&h=1080&fit=crop&q=80')",
             backgroundSize: "cover",
-            backgroundPosition: "center",
+            backgroundPosition: "center top",
           }}
         />
         <div className="container-page relative text-center">
