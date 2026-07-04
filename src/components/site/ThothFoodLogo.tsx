@@ -24,24 +24,20 @@ function IOIIcon({ className }: { className?: string }) {
 
 export function ThothFoodLogo({ size = "md" }: { size?: "sm" | "md" | "lg" }) {
   const sizes = {
-    sm: { badge: "h-7 w-7",   icon: "h-3.5 w-3.5", name: "text-lg"  },
-    md: { badge: "h-8 w-8",   icon: "h-4 w-4",      name: "text-xl"  },
-    lg: { badge: "h-10 w-10", icon: "h-5 w-5",       name: "text-2xl" },
+    sm: { icon: "h-4 w-4",   name: "text-lg"  },
+    md: { icon: "h-5 w-5",   name: "text-xl"  },
+    lg: { icon: "h-6 w-6",   name: "text-2xl" },
   };
   const s = sizes[size];
   return (
-    <span className="flex items-center gap-2 font-display font-extrabold tracking-tight">
-      <span
-        className={`grid ${s.badge} flex-shrink-0 place-items-center rounded-full border-2 border-primary text-primary`}
-      >
-        <IOIIcon className={s.icon} />
-      </span>
+    <span className="flex items-center gap-1.5 font-display font-extrabold tracking-tight">
       <span
         className={`${s.name} font-bold uppercase leading-none`}
         style={{ fontFamily: "var(--font-wordmark)" }}
       >
         Thoth
       </span>
+      <IOIIcon className={`${s.icon} flex-shrink-0 text-primary`} />
     </span>
   );
 }

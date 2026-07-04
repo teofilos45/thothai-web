@@ -20,7 +20,7 @@ export function ThothAILogo({ size = "md" }: { size?: "sm" | "md" | "lg" }) {
         >
           Thoth
         </span>
-        <span className={`mt-[0.3em] font-sans ${s.sub} font-semibold uppercase tracking-[0.15em] text-foreground/50`}>
+        <span className={`mt-[0.3em] font-sans ${s.sub} font-semibold uppercase tracking-[0.15em] opacity-50`}>
           Technologies
         </span>
       </span>

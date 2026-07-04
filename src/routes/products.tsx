@@ -61,11 +61,7 @@ function Products() {
                 className="flex flex-col rounded-3xl border border-white/10 bg-dark-card p-8"
               >
                 <div className="flex items-start justify-between">
-                  {p.name === "Thoth" ? (
-                    <img src="/images/thothfood-card.jpg" alt="Food ready for delivery" className="h-16 w-16 rounded-2xl object-cover" />
-                  ) : (
-                    <span className="text-4xl">{p.icon}</span>
-                  )}
+                  <span className="text-4xl">{p.icon}</span>
                   {p.status === "live" ? (
                     <span className="inline-flex items-center gap-1.5 rounded-full bg-success/15 px-3 py-1 text-xs font-semibold text-success">
                       <span className="h-1.5 w-1.5 rounded-full bg-success" /> Live
