@@ -37,8 +37,25 @@ function About() {
   return (
     <>
       {/* PAGE HEADER */}
-      <section className="bg-background pt-32 pb-12 md:pt-40">
-        <div className="container-page text-center">
+      <section className="relative overflow-hidden bg-dark py-24 text-dark-foreground md:py-32">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 opacity-40"
+          style={{
+            background:
+              "radial-gradient(70% 60% at 50% 110%, oklch(0.745 0.165 60 / 0.35) 0%, transparent 70%)",
+          }}
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 opacity-20"
+          style={{
+            backgroundImage: "url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1920&h=1080&fit=crop&q=80')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        />
+        <div className="container-page relative text-center">
           <p className="text-sm font-semibold uppercase tracking-wider text-primary">About us</p>
           <h1 className="mx-auto mt-3 max-w-3xl font-display text-4xl font-extrabold tracking-tight md:text-5xl">
             Building the commerce layer for Africa, on WhatsApp.
