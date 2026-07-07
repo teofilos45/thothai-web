@@ -70,7 +70,7 @@ function Home() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.05 }}
-              className="mt-5 font-display text-5xl font-extrabold leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl"
+              className="mt-5 font-display text-4xl font-extrabold leading-[1.02] tracking-tight sm:text-5xl lg:text-7xl"
             >
               Order food on{" "}
               <span className="relative inline-block">
@@ -165,7 +165,7 @@ function Home() {
           <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
             <div className="max-w-xl">
               <p className="text-sm font-semibold uppercase tracking-wider text-primary">How it works</p>
-              <h2 className="mt-3 font-display text-4xl font-extrabold tracking-tight md:text-5xl">
+              <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight sm:text-4xl md:text-5xl">
                 Three taps. One hot meal.
               </h2>
             </div>
@@ -219,7 +219,7 @@ function Home() {
           <p className="text-center text-xs font-semibold uppercase tracking-widest text-foreground/40">
             Now serving in Accra
           </p>
-          <div className="mt-6 flex flex-wrap justify-center gap-3">
+          <div className="mt-6 flex gap-3 overflow-x-auto pb-2">
             {featuredRestaurants.map((r) => (
               <WhatsAppLink
                 key={r.name}
@@ -242,7 +242,7 @@ function Home() {
         <div className="container-page">
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-sm font-semibold uppercase tracking-wider text-primary">Why Thoth</p>
-            <h2 className="mt-3 font-display text-4xl font-extrabold tracking-tight md:text-5xl">
+            <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight sm:text-4xl md:text-5xl">
               Built for how you actually order.
             </h2>
             <p className="mt-4 text-foreground/65">
@@ -284,7 +284,7 @@ function Home() {
                 <span className="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary">
                   <Sparkles className="h-3.5 w-3.5" /> Coming Soon
                 </span>
-                <h2 className="mt-5 font-display text-4xl font-extrabold leading-tight md:text-6xl">
+                <h2 className="mt-5 font-display text-3xl font-extrabold leading-tight sm:text-4xl md:text-6xl">
                   Food was just<br />the beginning.
                 </h2>
                 <p className="mt-5 max-w-lg body-text text-white/65">
@@ -292,7 +292,7 @@ function Home() {
                 </p>
                 <Link
                   to="/thothshop"
-                  className="mt-7 inline-flex h-12 items-center gap-2 rounded-full bg-white px-6 text-sm font-semibold text-dark hover:bg-primary hover:text-primary-foreground"
+                  className="mt-7 inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-white px-6 text-sm font-semibold text-dark hover:bg-primary hover:text-primary-foreground sm:w-auto"
                 >
                   Join the waitlist <ArrowRight className="h-4 w-4" />
                 </Link>
@@ -338,7 +338,7 @@ function Home() {
       {/* FINAL CTA */}
       <section className="bg-background py-24">
         <div className="container-page text-center">
-          <h2 className="mx-auto max-w-3xl font-display text-5xl font-extrabold tracking-tight md:text-6xl">
+          <h2 className="mx-auto max-w-3xl font-display text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
             Start ordering today.<br />
             <span className="text-primary">Just open WhatsApp.</span>
           </h2>

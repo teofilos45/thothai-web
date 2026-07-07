@@ -131,26 +131,55 @@ export function Header() {
       {open && (
         <div className="border-t border-border bg-background md:hidden">
           <nav className="container-page flex flex-col gap-1 py-4">
-            {links.map((l) => (
-              <Link
-                key={l.to}
-                to={l.to}
-                onClick={() => setOpen(false)}
-                className="rounded-md px-3 py-3 text-base font-medium text-foreground/80 hover:bg-muted"
-              >
-                {l.label}
-              </Link>
-            ))}
+            {links.map((l) =>
+              !isThothFood && l.to === "/products" ? (
+                <div key={l.to}>
+                  <Link
+                    to="/products"
+                    onClick={() => setOpen(false)}
+                    className="block rounded-md px-3 py-3 text-base font-medium text-foreground/80 hover:bg-muted"
+                  >
+                    Our Products
+                  </Link>
+                  <div className="ml-4 flex flex-col gap-0.5 border-l border-border pl-3">
+                    <Link
+                      to="/thothfood"
+                      onClick={() => setOpen(false)}
+                      className="block rounded-md px-3 py-2.5 text-sm font-medium text-foreground/70 hover:bg-muted"
+                    >
+                      Thoth <span className="ml-1 text-xs text-muted-foreground">Order food on WhatsApp</span>
+                    </Link>
+                    <Link
+                      to="/thothshop"
+                      onClick={() => setOpen(false)}
+                      className="block rounded-md px-3 py-2.5 text-sm font-medium text-foreground/70 hover:bg-muted"
+                    >
+                      ThothShop <span className="ml-1 text-xs text-muted-foreground">Sell anything on WhatsApp</span>
+                    </Link>
+                  </div>
+                </div>
+              ) : (
+                <Link
+                  key={l.to}
+                  to={l.to}
+                  onClick={() => setOpen(false)}
+                  className="rounded-md px-3 py-3 text-base font-medium text-foreground/80 hover:bg-muted"
+                >
+                  {l.label}
+                </Link>
+              )
+            )}
             <div className="mt-2 flex flex-col gap-2">
               {isThothFood ? (
                 <>
                   <a
                     href={LOGIN_URL}
+                    onClick={() => setOpen(false)}
                     className="inline-flex h-12 items-center justify-center rounded-full border border-border font-semibold text-foreground/80"
                   >
                     Restaurant Login
                   </a>
-                  <WhatsAppLink className="inline-flex h-12 items-center justify-center rounded-full bg-primary font-semibold text-primary-foreground">
+                  <WhatsAppLink onClick={() => setOpen(false)} className="inline-flex h-12 items-center justify-center rounded-full bg-primary font-semibold text-primary-foreground">
                     Order Now
                   </WhatsAppLink>
                 </>

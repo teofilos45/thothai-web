@@ -81,7 +81,7 @@ function Home() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.07 }}
-            className="mx-auto mt-6 max-w-4xl font-display text-5xl font-extrabold leading-[1.05] tracking-tight md:text-7xl"
+            className="mx-auto mt-6 max-w-4xl font-display text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl md:text-7xl"
           >
             Building the commerce layer for Africa{" "}
             <span className="text-primary">on WhatsApp.</span>
@@ -98,7 +98,7 @@ function Home() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.17 }}
-            className="mt-8 flex flex-wrap justify-center gap-3"
+            className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center"
           >
             <Link
               to="/thothfood"
@@ -121,7 +121,7 @@ function Home() {
         <div className="container-page">
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-sm font-semibold uppercase tracking-wider text-primary">Product family</p>
-            <h2 className="mt-3 font-display text-4xl font-extrabold tracking-tight md:text-5xl">
+            <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight sm:text-4xl md:text-5xl">
               One platform. Every category.
             </h2>
             <p className="mt-4 text-white/60">
@@ -156,7 +156,7 @@ function Home() {
                   </div>
                 </div>
                 {/* Content */}
-                <div className="flex flex-1 flex-col p-8">
+                <div className="flex flex-1 flex-col p-6 md:p-8">
                   <h3 className="flex items-center gap-2 font-display text-2xl font-extrabold">
                     {p.name}
                     {p.name === "Thoth" && <IOIIcon className="h-5 w-5 flex-shrink-0 text-primary" />}
@@ -181,7 +181,7 @@ function Home() {
         <div className="container-page">
           <div className="mx-auto max-w-2xl rounded-3xl border border-white/10 bg-dark-card p-10 text-center md:p-16">
             <p className="text-sm font-semibold uppercase tracking-wider text-primary">Get in touch</p>
-            <h2 className="mt-3 font-display text-4xl font-extrabold tracking-tight md:text-5xl">
+            <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight sm:text-4xl md:text-5xl">
               Partner, invest, or just say hi.
             </h2>
             <p className="mx-auto mt-4 max-w-lg text-white/60">

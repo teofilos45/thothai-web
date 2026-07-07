@@ -169,7 +169,7 @@ function HowItWorks() {
           <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider">
             How it works
           </span>
-          <h1 className="mx-auto mt-5 max-w-3xl font-display text-5xl font-extrabold tracking-tight md:text-7xl">
+          <h1 className="mx-auto mt-5 max-w-3xl font-display text-4xl font-extrabold tracking-tight sm:text-5xl md:text-7xl">
             From tap to <span className="text-primary">table.</span>
           </h1>
           <p className="mx-auto mt-5 max-w-2xl body-text text-white/65">
@@ -194,12 +194,12 @@ function HowItWorks() {
                     Step {String(i + 1).padStart(2, "0")}
                   </span>
                 </div>
-                <h2 className="mt-5 font-display text-4xl font-extrabold tracking-tight md:text-5xl">
+                <h2 className="mt-5 font-display text-3xl font-extrabold tracking-tight sm:text-4xl md:text-5xl">
                   {s.title}
                 </h2>
                 <p className="mt-4 max-w-md body-text text-foreground/65">{s.desc}</p>
               </div>
-              <div>
+              <div className="max-h-[480px] overflow-hidden md:max-h-none">
                 {"catalogue" in s ? (
                   // eslint-disable-next-line @typescript-eslint/no-explicit-any
                   <WhatsAppCatalogue {...(s as any).catalogue} />
@@ -215,7 +215,7 @@ function HowItWorks() {
 
       <section className="bg-secondary py-20">
         <div className="container-page text-center">
-          <h2 className="mx-auto max-w-2xl font-display text-4xl font-extrabold tracking-tight md:text-5xl">
+          <h2 className="mx-auto max-w-2xl font-display text-3xl font-extrabold tracking-tight sm:text-4xl md:text-5xl">
             That's it. Seriously.
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-foreground/65">

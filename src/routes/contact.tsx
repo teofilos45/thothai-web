@@ -68,7 +68,7 @@ function Contact() {
           <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider">
             Contact
           </span>
-          <h1 className="mx-auto mt-5 max-w-3xl font-display text-5xl font-extrabold tracking-tight md:text-7xl">
+          <h1 className="mx-auto mt-5 max-w-3xl font-display text-4xl font-extrabold tracking-tight sm:text-5xl md:text-7xl">
             Let's <span className="text-primary">chat.</span>
           </h1>
           <p className="mx-auto mt-5 max-w-xl body-text text-white/65">
@@ -173,7 +173,7 @@ function Contact() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-full bg-primary px-7 font-semibold text-primary-foreground shadow-[0_12px_30px_-12px_oklch(0.745_0.165_60/0.6)] disabled:opacity-60 sm:w-auto"
+                    className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-full bg-primary px-7 font-semibold text-primary-foreground shadow-[0_12px_30px_-12px_oklch(0.745_0.165_60/0.6)] disabled:opacity-60 sm:w-auto sm:justify-start"
                   >
                     {loading ? "Sending…" : <><span>Send message</span> <Send className="h-4 w-4" /></>}
                   </button>

@@ -118,7 +118,7 @@ function Pricing() {
           <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider">
             Pricing
           </span>
-          <h1 className="mx-auto mt-5 max-w-3xl font-display text-5xl font-extrabold tracking-tight md:text-7xl">
+          <h1 className="mx-auto mt-5 max-w-3xl font-display text-4xl font-extrabold tracking-tight sm:text-5xl md:text-7xl">
             Pricing that starts at <span className="text-primary">zero.</span>
           </h1>
           <p className="mx-auto mt-5 max-w-xl body-text text-white/65">
@@ -130,7 +130,7 @@ function Pricing() {
       {/* Plan cards */}
       <section className="bg-secondary py-16 md:py-24">
         <div className="container-page">
-          <div className="grid gap-6 md:grid-cols-3 md:items-start">
+          <div className="grid gap-6 sm:grid-cols-2 md:items-start lg:grid-cols-3">
 
             {/* Free card */}
             <div className="flex flex-col overflow-hidden rounded-3xl border border-border bg-background shadow-sm">
@@ -202,7 +202,7 @@ function Pricing() {
             </div>
 
             {/* Max card */}
-            <div className="flex flex-col overflow-hidden rounded-3xl border border-white/15 bg-dark text-dark-foreground">
+            <div className="flex flex-col overflow-hidden rounded-3xl border border-white/15 bg-dark text-dark-foreground sm:col-span-2 lg:col-span-1">
               <div className="p-6 md:p-8">
                 <div className="flex items-center justify-between">
                   <p className="font-display text-sm font-bold uppercase tracking-wider text-white/40">Max</p>
@@ -245,8 +245,9 @@ function Pricing() {
       <section className="bg-background py-16 md:py-24">
         <div className="container-page">
           <h2 className="font-display text-2xl font-extrabold tracking-tight md:text-3xl">Free vs Pro</h2>
-          <div className="mt-8 overflow-hidden rounded-2xl border border-border">
-            <table className="w-full text-sm">
+          <div className="-mx-4 mt-8 overflow-x-auto px-4 sm:mx-0 sm:px-0">
+          <div className="overflow-hidden rounded-2xl border border-border">
+            <table className="w-full min-w-[520px] text-sm">
               <thead>
                 <tr className="border-b border-border bg-secondary">
                   <th className="px-6 py-4 text-left font-display font-bold">Feature</th>
@@ -281,6 +282,7 @@ function Pricing() {
               </tbody>
             </table>
           </div>
+          </div>
         </div>
       </section>
 
@@ -313,7 +315,7 @@ function Pricing() {
       <section className="bg-background py-20">
         <div className="container-page">
           <div className="rounded-3xl bg-primary p-10 text-center text-primary-foreground md:p-14">
-            <h2 className="mx-auto max-w-2xl font-display text-4xl font-extrabold tracking-tight md:text-5xl">
+            <h2 className="mx-auto max-w-2xl font-display text-3xl font-extrabold tracking-tight sm:text-4xl md:text-5xl">
               Ready to take your first WhatsApp order?
             </h2>
             <p className="mx-auto mt-3 max-w-lg opacity-80">

@@ -46,7 +46,7 @@ function ForRestaurants() {
             <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary">
               For Restaurants
             </span>
-            <h1 className="mt-5 font-display text-5xl font-extrabold leading-[1.05] tracking-tight md:text-6xl lg:text-7xl">
+            <h1 className="mt-5 font-display text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
               Put your restaurant on WhatsApp. <span className="text-primary">Free.</span>
             </h1>
             <p className="mt-6 max-w-lg body-text text-foreground/65">
@@ -70,7 +70,7 @@ function ForRestaurants() {
           </div>
 
           {/* Dashboard mock */}
-          <div className="relative">
+          <div className="relative max-w-full overflow-x-hidden">
             <div className="absolute -inset-6 -z-10 rounded-[3rem] bg-gradient-to-br from-primary/25 to-success/15 blur-3xl" />
             <div className="overflow-hidden rounded-3xl border border-border bg-dark text-dark-foreground shadow-2xl">
               <div className="flex items-center gap-2 border-b border-white/10 px-5 py-3">
@@ -116,7 +116,7 @@ function ForRestaurants() {
         <div className="container-page">
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-sm font-semibold uppercase tracking-wider text-primary">Everything you need</p>
-            <h2 className="mt-3 font-display text-4xl font-extrabold tracking-tight md:text-5xl">
+            <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight sm:text-4xl md:text-5xl">
               A full restaurant OS, hiding in a WhatsApp chat.
             </h2>
           </div>
@@ -140,7 +140,7 @@ function ForRestaurants() {
           <div className="grid gap-12 md:grid-cols-[1fr_1.2fr] md:items-start">
             <div>
               <p className="text-sm font-semibold uppercase tracking-wider text-primary">8-step onboarding</p>
-              <h2 className="mt-3 font-display text-4xl font-extrabold tracking-tight md:text-5xl">
+              <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight sm:text-4xl md:text-5xl">
                 Live in days, not months.
               </h2>
               <p className="mt-4 max-w-md text-foreground/65">
@@ -166,7 +166,7 @@ function ForRestaurants() {
         <div className="container-page">
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-sm font-semibold uppercase tracking-wider text-primary">Built on trust</p>
-            <h2 className="mt-3 font-display text-4xl font-extrabold tracking-tight md:text-5xl">
+            <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight sm:text-4xl md:text-5xl">
               Protection on both sides of the chat.
             </h2>
           </div>

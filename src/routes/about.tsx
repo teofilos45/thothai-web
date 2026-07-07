@@ -57,7 +57,7 @@ function About() {
         />
         <div className="container-page relative text-center">
           <p className="text-sm font-semibold uppercase tracking-wider text-primary">About us</p>
-          <h1 className="mx-auto mt-3 max-w-3xl font-display text-4xl font-extrabold tracking-tight md:text-5xl">
+          <h1 className="mx-auto mt-3 max-w-3xl font-display text-3xl font-extrabold tracking-tight sm:text-4xl md:text-5xl">
             Building the commerce layer for Africa, on WhatsApp.
           </h1>
         </div>
@@ -69,7 +69,7 @@ function About() {
           <div className="grid gap-16 md:grid-cols-2 md:items-center">
             <div>
               <p className="text-sm font-semibold uppercase tracking-wider text-primary">Our mission</p>
-              <h2 className="mt-3 font-display text-4xl font-extrabold tracking-tight md:text-5xl">
+              <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight sm:text-4xl md:text-5xl">
                 Make commerce as easy as texting a friend.
               </h2>
               <p className="mt-5 body-text text-foreground/65">
@@ -87,7 +87,7 @@ function About() {
                 { label: "App downloads required", value: "Zero" },
               ].map((s) => (
                 <div key={s.label} className="rounded-2xl border border-border bg-card p-6">
-                  <p className="font-display text-3xl font-extrabold text-primary">{s.value}</p>
+                  <p className="font-display text-2xl font-extrabold text-primary sm:text-3xl">{s.value}</p>
                   <p className="mt-1.5 text-sm text-foreground/60">{s.label}</p>
                 </div>
               ))}
@@ -101,7 +101,7 @@ function About() {
         <div className="container-page">
           <div className="mx-auto max-w-3xl text-center">
             <p className="text-sm font-semibold uppercase tracking-wider text-primary">Our vision</p>
-            <h2 className="mt-4 font-display text-4xl font-extrabold leading-tight tracking-tight md:text-6xl">
+            <h2 className="mt-4 font-display text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl md:text-6xl">
               Every African merchant.<br />
               <span className="text-primary">One conversation away.</span>
             </h2>
@@ -141,7 +141,7 @@ function About() {
         <div className="container-page">
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-sm font-semibold uppercase tracking-wider text-primary">How we build</p>
-            <h2 className="mt-3 font-display text-4xl font-extrabold tracking-tight md:text-5xl">
+            <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight sm:text-4xl md:text-5xl">
               Three things we don't compromise on.
             </h2>
           </div>
@@ -164,7 +164,7 @@ function About() {
         <div className="container-page">
           <div className="max-w-xl">
             <p className="text-sm font-semibold uppercase tracking-wider text-primary">Careers</p>
-            <h2 className="mt-3 font-display text-4xl font-extrabold tracking-tight md:text-5xl">
+            <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight sm:text-4xl md:text-5xl">
               Build the future of commerce in Ghana.
             </h2>
             <p className="mt-4 body-text text-foreground/65">
@@ -183,9 +183,9 @@ function About() {
       {/* CONTACT */}
       <section className="bg-dark py-24 text-dark-foreground">
         <div className="container-page">
-          <div className="mx-auto max-w-2xl rounded-3xl border border-white/10 bg-dark-card p-10 text-center md:p-16">
+          <div className="mx-auto max-w-2xl rounded-3xl border border-white/10 bg-dark-card p-6 text-center sm:p-10 md:p-16">
             <p className="text-sm font-semibold uppercase tracking-wider text-primary">Get in touch</p>
-            <h2 className="mt-3 font-display text-4xl font-extrabold tracking-tight md:text-5xl">
+            <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight sm:text-4xl md:text-5xl">
               Partner, invest, or just say hi.
             </h2>
             <p className="mx-auto mt-4 max-w-lg text-white/60">

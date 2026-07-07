@@ -24,7 +24,7 @@ export function Footer() {
             </div>
             <Link
               to="/thothshop"
-              className="inline-flex h-12 items-center rounded-full bg-white/10 px-6 text-sm font-semibold text-white transition-colors hover:bg-white/15"
+              className="inline-flex h-12 w-full items-center justify-center rounded-full bg-white/10 px-6 text-sm font-semibold text-white transition-colors hover:bg-white/15 md:w-auto"
             >
               Get early access
             </Link>
@@ -82,7 +82,7 @@ export function Footer() {
 
         <div className="mt-12 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/40 md:flex-row md:items-center">
           <p>© {new Date().getFullYear()} Thoth Technologies. All rights reserved.</p>
-          <div className="flex gap-4">
+          <div className="flex flex-wrap gap-4">
             <Link to="/terms" className="hover:text-white/70">Terms</Link>
             <Link to="/privacy" className="hover:text-white/70">Privacy</Link>
             <p>Made with ❤️ in Accra</p>

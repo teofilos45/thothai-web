@@ -44,7 +44,7 @@ function Products() {
           <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider">
             Our Products
           </span>
-          <h1 className="mx-auto mt-5 max-w-3xl font-display text-5xl font-extrabold tracking-tight md:text-7xl">
+          <h1 className="mx-auto mt-5 max-w-3xl font-display text-4xl font-extrabold tracking-tight sm:text-5xl md:text-7xl">
             One platform. <span className="text-primary">Every category.</span>
           </h1>
           <p className="mx-auto mt-5 max-w-xl body-text text-white/65">
@@ -82,7 +82,7 @@ function Products() {
                   </div>
                 </div>
                 {/* Content */}
-                <div className="flex flex-1 flex-col p-8">
+                <div className="flex flex-1 flex-col p-6 md:p-8">
                   <h2 className="flex items-center gap-2 font-display text-2xl font-extrabold">
                     {p.name}
                     {p.name === "Thoth" && <IOIIcon className="h-5 w-5 flex-shrink-0 text-primary" />}
