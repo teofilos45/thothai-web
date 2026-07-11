@@ -10,13 +10,19 @@ export const SITE_URL = import.meta.env.VITE_SITE_URL ?? "https://thothfood.com"
 // Base URL of the Railway API backend — used for contact form POST
 export const API_URL = import.meta.env.VITE_API_URL ?? APP_URL;
 
-// TODO: replace after Meta central-number verification
-export const WHATSAPP_ORDER_URL = "https://wa.me/233000000000";
+// Central Thoth ordering number — customers use this to browse menus and
+// place orders from Free-tier restaurants. Infrastructure coming soon.
+// TODO: replace placeholder with real central number when available.
+export const WHATSAPP_ORDER_URL = "https://wa.me/233XXXXXXXXXX";
+
+// Thoth Technologies direct business number — for inquiries, partnerships,
+// restaurant onboarding questions, and support.
+export const WHATSAPP_BUSINESS_URL = "https://wa.me/233533769658";
 
 export const CONTACT_EMAIL = "aithoth6@gmail.com";
 
 export const SOCIAL_URLS = {
-  instagram: "#",
+  instagram: "https://www.instagram.com/_.t.h.othai",
   twitter: "#",
-  facebook: "#",
+  facebook: "https://www.facebook.com/thoth1234",
 };

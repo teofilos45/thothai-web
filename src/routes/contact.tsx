@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useRef, type FormEvent } from "react";
 import { Mail, MapPin, MessageCircle, Send, CheckCircle2, ArrowRight } from "lucide-react";
-import { WHATSAPP_ORDER_URL, SIGNUP_URL, CONTACT_EMAIL, API_URL } from "@/lib/site";
+import { WHATSAPP_BUSINESS_URL, SIGNUP_URL, CONTACT_EMAIL } from "@/lib/site";
 import { trackContactSubmit } from "@/lib/pixel";
 
 export const Route = createFileRoute("/contact")({
@@ -25,40 +25,37 @@ function Contact() {
   const { role } = Route.useSearch();
   const [intent, setIntent] = useState<string>(role ?? "");
   const [sent, setSent] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
   const honeypotRef = useRef<HTMLInputElement>(null);
 
-  const submit = async (e: FormEvent<HTMLFormElement>) => {
+  const submit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Honeypot check — bots fill the hidden field
     if (honeypotRef.current?.value) return;
 
-    setLoading(true);
-    setError(null);
-
     const form = e.currentTarget;
-    const data = {
-      intent,
-      name: (form.elements.namedItem("name") as HTMLInputElement).value,
-      email: (form.elements.namedItem("email") as HTMLInputElement).value,
-      message: (form.elements.namedItem("message") as HTMLTextAreaElement).value,
+    const name = (form.elements.namedItem('name') as HTMLInputElement).value.trim();
+    const email = (form.elements.namedItem('email') as HTMLInputElement).value.trim();
+    const message = (form.elements.namedItem('message') as HTMLTextAreaElement).value.trim();
+
+    const intentLabel: Record<string, string> = {
+      customer: 'Customer',
+      restaurant: 'Restaurant owner',
+      investor: 'Investor',
+      developer: 'Developer',
+      other: 'Other',
     };
 
-    try {
-      const res = await fetch(`${API_URL}/api/public/contact`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-      if (!res.ok) throw new Error("server_error");
-      trackContactSubmit();
-      setSent(true);
-    } catch {
-      setError("Something went wrong. Try WhatsApp below — it's faster anyway.");
-    } finally {
-      setLoading(false);
-    }
+    const subject = encodeURIComponent(
+      `ThothFood contact — ${intentLabel[intent] ?? 'General inquiry'}`
+    );
+
+    const body = encodeURIComponent(
+      `Name: ${name}\nEmail: ${email}\nI am a: ${intentLabel[intent] ?? intent}\n\nMessage:\n${message}`
+    );
+
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+
+    trackContactSubmit();
+    setSent(true);
   };
 
   return (
@@ -88,7 +85,8 @@ function Contact() {
                 </span>
                 <h2 className="mt-6 font-display text-3xl font-extrabold">Message sent!</h2>
                 <p className="mt-2 max-w-sm text-foreground/65">
-                  Thanks for reaching out — someone from the Thoth team will be in touch shortly.
+                  Your email client should have opened with your message pre-filled — just hit Send.
+                  We'll get back to you at the email address you provided.
                 </p>
               </div>
             ) : (
@@ -98,7 +96,7 @@ function Contact() {
                   <div className="mb-6 flex items-center justify-between gap-4 rounded-2xl border border-primary/30 bg-primary/5 px-5 py-4">
                     <div>
                       <p className="text-sm font-semibold text-foreground">Want to list your restaurant?</p>
-                      <p className="mt-0.5 text-xs text-foreground/60">Sign up free and be live in days — no call needed.</p>
+                      <p className="mt-0.5 text-xs text-foreground/60">Sign up free and be live instantly — no call needed.</p>
                     </div>
                     <a
                       href={SIGNUP_URL}
@@ -167,15 +165,11 @@ function Contact() {
                       className="mt-2 w-full resize-none rounded-xl border border-border bg-background p-4 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
                     />
                   </div>
-                  {error && (
-                    <p className="rounded-xl bg-destructive/10 px-4 py-3 text-sm text-destructive">{error}</p>
-                  )}
                   <button
                     type="submit"
-                    disabled={loading}
-                    className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-full bg-primary px-7 font-semibold text-primary-foreground shadow-[0_12px_30px_-12px_oklch(0.745_0.165_60/0.6)] disabled:opacity-60 sm:w-auto sm:justify-start"
+                    className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-full bg-primary px-7 font-semibold text-primary-foreground shadow-[0_12px_30px_-12px_oklch(0.745_0.165_60/0.6)] sm:w-auto sm:justify-start"
                   >
-                    {loading ? "Sending…" : <><span>Send message</span> <Send className="h-4 w-4" /></>}
+                    <span>Send message</span> <Send className="h-4 w-4" />
                   </button>
                 </form>
               </>
@@ -192,7 +186,7 @@ function Contact() {
               <h3 className="mt-5 font-display text-lg font-bold">Fastest: WhatsApp us</h3>
               <p className="mt-1 text-white/65">Message the team directly — we reply faster here than anywhere else.</p>
               <a
-                href={WHATSAPP_ORDER_URL}
+                href={WHATSAPP_BUSINESS_URL}
                 className="mt-4 inline-flex h-11 items-center gap-2 rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground"
               >
                 <MessageCircle className="h-4 w-4" /> Open WhatsApp

@@ -141,7 +141,7 @@ function Pricing() {
                   <span className="mb-1 text-sm text-foreground/50">, forever</span>
                 </div>
                 <p className="mt-3 body-text text-foreground/65">
-                  Get discovered on the central Choppa number.
+                  Get discovered on the central Thoth number.
                 </p>
                 <a
                   href={`${SIGNUP_URL}?plan=FREE`}
